@@ -16,7 +16,7 @@ class EventViewModel: ObservableObject {
         do {
             events = try viewContext.fetch(fetchRequest)
         } catch {
-            print("Error fetching events: \(error)")
+            print("Error al obtener los eventos: \(error)")
         }
     }
     
@@ -74,7 +74,7 @@ class EventViewModel: ObservableObject {
             try viewContext.save()
             fetchEvents()
         } catch {
-            print("Error saving context: \(error)")
+            print("Error al salvar el contexto: \(error)")
         }
     }
     
