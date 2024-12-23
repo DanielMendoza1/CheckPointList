@@ -12,7 +12,7 @@ struct EventDetailsView: View {
             Form {
                 Section {
                     LabeledContent("Nombre del evento", value: event.name ?? "Sin Nombre")
-                    LabeledContent("Fecha del evento", value: viewModel.formatDateToText(date: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
+                    LabeledContent("Fecha del evento", value: Utils.formatDateToText(of: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
                 } header: {
                     Text("Informacion Extra")
                 }
@@ -25,13 +25,13 @@ struct EventDetailsView: View {
                     .disabled(viewModel.isDuplicatedEventDate(for: event, newEventDate: Date()))
                 }
                 Section {
-                    LabeledContent("Dias transcurridos", value: viewModel.calculateDaysUntilNow(start: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
+                    LabeledContent("Dias transcurridos", value: Utils.calculateDaysUntilNow(from: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
                 } header: {
                     Text("Estadisticas")
                 }
                 Section {
                     List(viewModel.getAllEventDatesByEvent(for: event)) { eventDate in
-                        Text("Fecha: \(viewModel.formatDateToText(date: eventDate.date ?? Date()))")
+                        Text("Fecha: \(Utils.formatDateToText(of: eventDate.date ?? Date()))")
                     }
                 } header: {
                     Text("Fechas registradas")

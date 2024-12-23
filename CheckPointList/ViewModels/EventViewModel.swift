@@ -10,9 +10,22 @@ class EventViewModel: ObservableObject {
         fetchEvents()
     }
     
+    func isDuplicatedEventName(for event: Event, eventName: String) -> Bool {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", eventName)
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            return !result.isEmpty
+        } catch {
+            print("Error al consultar nombres de eventos: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
     func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {
         let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, removeTimeFromDate(of: newEventDate) as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, Utils.removeTimeFromDate(of: newEventDate) as CVarArg)
         
         do {
             let result = try viewContext.fetch(fetchRequest)
@@ -68,7 +81,7 @@ class EventViewModel: ObservableObject {
     
     func addEvent(name: String, date: Date) {
         let newEventDate = EventDate(context: viewContext)
-        newEventDate.date = removeTimeFromDate(of: date)
+        newEventDate.date = Utils.removeTimeFromDate(of: date)
         newEventDate.timestamp = Date()
         
         let newEvent = Event(context: viewContext)
@@ -91,32 +104,14 @@ class EventViewModel: ObservableObject {
         }
     }
     
-    func formatDateToText(date: Date, format: String = "EEEE, MMM d, yyyy", locale: String = "es_MX") -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        formatter.locale = Locale(identifier: locale)
-        return formatter.string(from: date)
-    }
+ 
     
     func updateDateToNow(eventToUpdate: Event) {
         let newEventDate = EventDate(context: viewContext)
-        newEventDate.date = removeTimeFromDate(of: Date())
+        newEventDate.date = Utils.removeTimeFromDate(of: Date())
         newEventDate.timestamp = Date()
         eventToUpdate.addToDates(newEventDate)
         saveContext()
-    }
-    
-    func calculateDaysUntilNow(start: Date) -> String {
-        let calendar = Calendar.current
-        let startOfDate = calendar.startOfDay(for: start)
-        let endOfDate = calendar.startOfDay(for: Date())
-        let components = calendar.dateComponents([.day], from: startOfDate, to: endOfDate)
-        return String(components.day ?? 0)
-    }
-    
-    func removeTimeFromDate(of date: Date) -> Date {
-        let calendar = Calendar.current
-        return calendar.startOfDay(for: date)
     }
     
 }

@@ -18,7 +18,7 @@ struct EventListView: View {
                             Text(event.name ?? "Sin Nombre")
                                 .foregroundColor(.primary)
                             if let date = viewModel.getMostRecentEventDateByEvent(for: event)?.date {
-                                Text("Fecha: \(viewModel.formatDateToText(date: date))")
+                                Text("Fecha: \(Utils.formatDateToText(of: date))")
                                     .font(.footnote)
                                     .foregroundColor(.secondary)
                             }
