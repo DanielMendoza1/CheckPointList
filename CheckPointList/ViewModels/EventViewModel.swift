@@ -10,6 +10,19 @@ class EventViewModel: ObservableObject {
         fetchEvents()
     }
     
+    func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {
+        let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, removeTimeFromDate(of: newEventDate) as CVarArg)
+        
+        do {
+            let result = try viewContext.fetch(fetchRequest)
+            return !result.isEmpty
+        } catch {
+            print("Error al consultar fechas de eventos: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
     func fetchEvents() {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         
@@ -27,7 +40,7 @@ class EventViewModel: ObservableObject {
         
         do {
             let result = try viewContext.fetch(fetchRequest)
-                    return result.first // Regresa el más reciente
+                    return result.first
             } catch {
                 print("Error al obtener el EventDate más reciente: \(error.localizedDescription)")
                 return nil
@@ -55,7 +68,7 @@ class EventViewModel: ObservableObject {
     
     func addEvent(name: String, date: Date) {
         let newEventDate = EventDate(context: viewContext)
-        newEventDate.date = date
+        newEventDate.date = removeTimeFromDate(of: date)
         newEventDate.timestamp = Date()
         
         let newEvent = Event(context: viewContext)
@@ -87,7 +100,7 @@ class EventViewModel: ObservableObject {
     
     func updateDateToNow(eventToUpdate: Event) {
         let newEventDate = EventDate(context: viewContext)
-        newEventDate.date = Date()
+        newEventDate.date = removeTimeFromDate(of: Date())
         newEventDate.timestamp = Date()
         eventToUpdate.addToDates(newEventDate)
         saveContext()
@@ -99,6 +112,11 @@ class EventViewModel: ObservableObject {
         let endOfDate = calendar.startOfDay(for: Date())
         let components = calendar.dateComponents([.day], from: startOfDate, to: endOfDate)
         return String(components.day ?? 0)
+    }
+    
+    func removeTimeFromDate(of date: Date) -> Date {
+        let calendar = Calendar.current
+        return calendar.startOfDay(for: date)
     }
     
 }

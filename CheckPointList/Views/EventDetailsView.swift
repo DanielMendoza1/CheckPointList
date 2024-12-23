@@ -22,6 +22,7 @@ struct EventDetailsView: View {
                     }) {
                         Text("Actualizar fecha")
                     }
+                    .disabled(viewModel.isDuplicatedEventDate(for: event, newEventDate: Date()))
                 }
                 Section {
                     LabeledContent("Dias transcurridos", value: viewModel.calculateDaysUntilNow(start: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
