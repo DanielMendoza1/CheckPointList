@@ -104,8 +104,7 @@ class EventViewModel: ObservableObject {
         }
     }
     
- 
-    
+     
     func updateDateToNow(eventToUpdate: Event) {
         let newEventDate = EventDate(context: viewContext)
         newEventDate.date = Utils.removeTimeFromDate(of: Date())
