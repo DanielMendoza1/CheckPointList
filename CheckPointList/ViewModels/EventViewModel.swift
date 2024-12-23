@@ -24,16 +24,7 @@ class EventViewModel: ObservableObject {
     }
     
     func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {
-        let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, Utils.removeTimeFromDate(of: newEventDate) as CVarArg)
-        
-        do {
-            let result = try viewContext.fetch(fetchRequest)
-            return !result.isEmpty
-        } catch {
-            print("Error al consultar fechas de eventos: \(error.localizedDescription)")
-            return false
-        }
+        return ValidationService.isDuplicatedEventDate(for: event, with: newEventDate, from: viewContext)
     }
     
     func fetchEvents() {
