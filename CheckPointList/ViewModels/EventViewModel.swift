@@ -10,17 +10,8 @@ class EventViewModel: ObservableObject {
         fetchEvents()
     }
     
-    func isDuplicatedEventName(for event: Event, eventName: String) -> Bool {
-        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "name == %@", eventName)
-        
-        do {
-            let result = try viewContext.fetch(fetchRequest)
-            return !result.isEmpty
-        } catch {
-            print("Error al consultar nombres de eventos: \(error.localizedDescription)")
-            return false
-        }
+    func isDuplicatedName(for name: String) -> Bool {
+        return ValidationService.isDuplicatedName(of: name, from: <#T##NSManagedObjectContext#>)
     }
     
     func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {

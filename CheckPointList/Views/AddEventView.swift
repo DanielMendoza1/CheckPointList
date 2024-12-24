@@ -19,7 +19,7 @@ struct AddEventView: View {
                     viewModel.addEvent(name: name, date: date)
                     presentationMode.wrappedValue.dismiss()
                 }
-                .disabled(name.isEmpty)
+                .disabled(name.isEmpty || viewModel.isDuplicatedName(for: name))
             }
             .navigationTitle("Nuevo evento")
         }
