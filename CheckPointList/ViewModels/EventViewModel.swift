@@ -11,7 +11,7 @@ class EventViewModel: ObservableObject {
     }
     
     func isDuplicatedName(for name: String) -> Bool {
-        return ValidationService.isDuplicatedName(of: name, from: <#T##NSManagedObjectContext#>)
+        return ValidationService.isDuplicatedName(of: name, from: viewContext)
     }
     
     func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {
