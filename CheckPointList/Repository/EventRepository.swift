@@ -14,21 +14,6 @@ class EventRepository {
         return try context.fetch(fetchRequest)
     }
     
-    func getMostRecentEventDateByEvent(for event: Event) throws -> EventDate? {
-        let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "event == %@", event)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        fetchRequest.fetchLimit = 1
-        return try context.fetch(fetchRequest).first
-    }
-    
-    func getAllEventDatesByEvent(for event: Event) throws -> [EventDate] {
-        let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "event == %@", event)
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        return try context.fetch(fetchRequest)
-    }
-    
     func createEvent(name: String, date: Date) throws {
         let newEventDate = EventDate(context: context)
         newEventDate.date = Utils.removeTimeFromDate(of: date)
@@ -37,14 +22,6 @@ class EventRepository {
         let newEvent = Event(context: context)
         newEvent.name = name
         newEvent.addToDates(newEventDate)
-        try context.save()
-    }
-    
-    func updateDateToNow(eventToUpdate: Event) throws {
-        let newEventDate = EventDate(context: context)
-        newEventDate.date = Utils.removeTimeFromDate(of: Date())
-        newEventDate.timestamp = Date()
-        eventToUpdate.addToDates(newEventDate)
         try context.save()
     }
     
