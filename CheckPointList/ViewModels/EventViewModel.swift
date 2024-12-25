@@ -4,9 +4,11 @@ import CoreData
 class EventViewModel: ObservableObject {
     @Published var events: [Event] = []
     private let viewContext: NSManagedObjectContext
-    
+    private let eventRepostiory: EventRepository
+
     init(context: NSManagedObjectContext) {
         self.viewContext = context
+        self.eventRepostiory = EventRepository(context: context)
         fetchEvents()
     }
     
@@ -18,13 +20,12 @@ class EventViewModel: ObservableObject {
         return ValidationService.isDuplicatedEventDate(for: event, with: newEventDate, from: viewContext)
     }
     
-    func fetchEvents() {
-        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-        
+    func fetchEvents() -> [Event] {
         do {
-            events = try viewContext.fetch(fetchRequest)
+            return try eventRepostiory.getAllEvents()
         } catch {
-            print("Error al obtener los eventos: \(error)")
+            print("Error al obtener los eventos: \(error.localizedDescription)")
+            return []
         }
     }
     
@@ -73,8 +74,7 @@ class EventViewModel: ObservableObject {
     }
     
     func deleteEvent(at offset: IndexSet) {
-        offset.map { events[$0] }.forEach(viewContext.delete)
-        saveContext()
+        
     }
     
     func saveContext() {
