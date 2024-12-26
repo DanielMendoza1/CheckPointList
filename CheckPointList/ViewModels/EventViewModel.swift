@@ -3,31 +3,29 @@ import CoreData
 
 class EventViewModel: ObservableObject {
     @Published var events: [Event] = []
+    @Published var showError: Bool = false
+    @Published var errorMessage: String = ""
+    
     private let viewContext: NSManagedObjectContext
     
     private let eventRepostiory: EventRepository
     private let eventDateRepositort: EventDateReporistory
+    private let validationService: ValidationService
 
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         self.eventRepostiory = EventRepository(context: context)
         self.eventDateRepositort = EventDateReporistory(context: context)
+        self.validationService = ValidationService(eventRepository: eventRepostiory,
+                                                   eventDateRepository: eventDateRepositort)
+        getAllEvents()
     }
     
-    func isDuplicatedName(for name: String) -> Bool {
-        return ValidationService.isDuplicatedName(of: name, from: viewContext)
-    }
-    
-    func isDuplicatedEventDate(for event: Event, newEventDate: Date) -> Bool {
-        return ValidationService.isDuplicatedEventDate(for: event, with: newEventDate, from: viewContext)
-    }
-    
-    func getAllEvents() -> [Event] {
+    func getAllEvents() {
         do {
-            return try eventRepostiory.getAllEvents()
+             events = try eventRepostiory.getAllEvents()
         } catch {
-            print("Error al obtener los eventos: \(error.localizedDescription)")
-            return []
+            generateErrorMessage(for: "Error al obtener todos los eventos")
         }
     }
     
@@ -35,25 +33,26 @@ class EventViewModel: ObservableObject {
         do {
             return try eventDateRepositort.getMostRecentEventDateByEvent(for: event)
         } catch {
-            print("Error al obtener el EventDate más reciente: \(error.localizedDescription)")
+            generateErrorMessage(for: "Error al obtener el EventDate más reciente")
             return nil
         }
     }
     
     func getAllEventDatesByEvent(for event: Event) -> [EventDate] {
         do {
-            return try eventDateRepositort.getAllEventDatesByEvent(for: <#T##Event#>)
+            return try eventDateRepositort.getAllEventDatesByEvent(for: event)
         } catch {
-            print("Error al obtener los EventDates: \(error.localizedDescription)")
+            generateErrorMessage(for: "Error al obtener los EventDates del evento")
             return []
         }
     }
     
     func addEvent(name: String, date: Date) {
         do {
-            try eventRepostiory.createEvent(name: <#T##String#>, date: <#T##Date#>)
+            try eventRepostiory.createEvent(name: name, date: date)
+            getAllEvents()
         } catch {
-            print("Error al crear el evento: \(error.localizedDescription)")
+            generateErrorMessage(for: "Error al crear el evento")
         }
     }
     
@@ -62,8 +61,9 @@ class EventViewModel: ObservableObject {
             let event = events[index]
             do {
                 try eventRepostiory.deleteEvent(for: event)
+                getAllEvents()
             } catch {
-                print("Error al eleiminar el evento: \(error.localizedDescription)")
+                generateErrorMessage(for: "Error al eleiminar el evento")
             }
         }
     }
@@ -71,9 +71,27 @@ class EventViewModel: ObservableObject {
     func updateDateToNow(event: Event) {
         do {
             try eventDateRepositort.updateDateToNow(for: event)
+            getAllEvents()
         } catch {
-            print("Error al actualizar la fecha del evento: \(error.localizedDescription)")
+            generateErrorMessage(for: "Error al actualizar la fecha del evento")
         }
     }
     
+    func isDuplicatedName(for name: String) -> Bool {
+        return validationService.isDuplicatedName(of: name)
+    }
+    
+    func isDuplicatedEventDate(for event: Event, by date: Date) -> Bool {
+        return validationService.isDuplicatedEventDate(for: event, by: date)
+    }
+    
+    func resetErrorMessage() {
+        self.errorMessage = ""
+        self.showError = false
+    }
+    
+    func generateErrorMessage(for errorMessage: String) {
+        self.errorMessage = errorMessage
+        self.showError = true
+    }
 }

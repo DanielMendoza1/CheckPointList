@@ -14,6 +14,12 @@ class EventRepository {
         return try context.fetch(fetchRequest)
     }
     
+    func getEventsByName(for name: String) throws -> [Event] {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "name == %@", name)
+        return try context.fetch(fetchRequest)
+    }
+    
     func createEvent(name: String, date: Date) throws {
         let newEventDate = EventDate(context: context)
         newEventDate.date = Utils.removeTimeFromDate(of: date)

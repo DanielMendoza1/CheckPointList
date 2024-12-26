@@ -24,6 +24,12 @@ class EventDateReporistory {
         return try context.fetch(fetchRequest)
     }
     
+    func getEventDateByDate(for event: Event, by date: Date) throws -> [EventDate] {
+        let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, Utils.removeTimeFromDate(of: date) as CVarArg)
+        return try context.fetch(fetchRequest)
+    }
+    
     func updateDateToNow(for event: Event) throws {
         let newEventDate = EventDate(context: context)
         newEventDate.date = Utils.removeTimeFromDate(of: Date())

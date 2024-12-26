@@ -21,5 +21,4 @@ class Utils {
         formatter.locale = Locale(identifier: locale)
         return formatter.string(from: date)
     }
-    
 }

@@ -6,7 +6,6 @@ struct EventDetailsView: View {
     @ObservedObject var event: Event
     var viewModel: EventViewModel
 
-    
     var body: some View {
         NavigationStack {
             Form {
@@ -18,11 +17,11 @@ struct EventDetailsView: View {
                 }
                 Section {
                     Button(action: {
-                        viewModel.updateDateToNow(eventToUpdate: event)
+                        viewModel.updateDateToNow(event: event)
                     }) {
                         Text("Actualizar fecha")
                     }
-                    .disabled(viewModel.isDuplicatedEventDate(for: event, newEventDate: Date()))
+                    .disabled(viewModel.isDuplicatedEventDate(for: event, by: Date()))
                 }
                 Section {
                     LabeledContent("Dias transcurridos", value: Utils.calculateDaysUntilNow(from: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))

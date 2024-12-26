@@ -23,6 +23,13 @@ struct EventListView: View {
                                     .foregroundColor(.secondary)
                             }
                         }
+                        .alert("Error", isPresented: $viewModel.showError) {
+                            Button("OK", role: .cancel) {
+                                viewModel.resetErrorMessage()
+                            }
+                        } message: {
+                            Text(viewModel.errorMessage)
+                        }
                     }
                 }
                 .onDelete(perform: viewModel.deleteEvent)
