@@ -9,15 +9,15 @@ class EventViewModel: ObservableObject {
     private let viewContext: NSManagedObjectContext
     
     private let eventRepostiory: EventRepository
-    private let eventDateRepositort: EventDateReporistory
+    private let eventDateRepository: EventDateReporistory
     private let validationService: ValidationService
 
     init(context: NSManagedObjectContext) {
         self.viewContext = context
         self.eventRepostiory = EventRepository(context: context)
-        self.eventDateRepositort = EventDateReporistory(context: context)
+        self.eventDateRepository = EventDateReporistory(context: context)
         self.validationService = ValidationService(eventRepository: eventRepostiory,
-                                                   eventDateRepository: eventDateRepositort)
+                                                   eventDateRepository: eventDateRepository)
         getAllEvents()
     }
     
@@ -31,7 +31,7 @@ class EventViewModel: ObservableObject {
     
     func getMostRecentEventDateByEvent(for event: Event) -> EventDate? {
         do {
-            return try eventDateRepositort.getMostRecentEventDateByEvent(for: event)
+            return try eventDateRepository.getMostRecentEventDateByEvent(for: event)
         } catch {
             generateErrorMessage(for: "Error al obtener el EventDate más reciente")
             return nil
@@ -40,7 +40,7 @@ class EventViewModel: ObservableObject {
     
     func getAllEventDatesByEvent(for event: Event) -> [EventDate] {
         do {
-            return try eventDateRepositort.getAllEventDatesByEvent(for: event)
+            return try eventDateRepository.getAllEventDatesByEvent(for: event)
         } catch {
             generateErrorMessage(for: "Error al obtener los EventDates del evento")
             return []
@@ -70,7 +70,7 @@ class EventViewModel: ObservableObject {
     
     func updateDateToNow(event: Event) {
         do {
-            try eventDateRepositort.updateDateToNow(for: event)
+            try eventDateRepository.updateDateToNow(for: event)
             getAllEvents()
         } catch {
             generateErrorMessage(for: "Error al actualizar la fecha del evento")
