@@ -1,0 +1,29 @@
+{
+  "configurations" : [
+    {
+      "id" : "E6EC69D6-49EF-4EE0-8E7F-DC894D4038AD",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:CheckPointList.xcodeproj",
+      "identifier" : "A95FBDF92CF28BB500C218AE",
+      "name" : "CheckPointList"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:CheckPointList.xcodeproj",
+        "identifier" : "A961906C2D1D248800CABFDF",
+        "name" : "CheckPointListTest"
+      }
+    }
+  ],
+  "version" : 1
+}

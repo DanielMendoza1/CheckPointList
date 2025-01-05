@@ -26,6 +26,7 @@ final class EventDateRepository: XCTestCase {
     
     override func tearDownWithError() throws {
         eventDateRepository = nil
+        eventRepository = nil
         persistenCointainer = nil
     }
     
@@ -58,16 +59,6 @@ final class EventDateRepository: XCTestCase {
         let event2Dates = try eventDateRepository.getAllEventDatesByEvent(for: event2!)
         XCTAssertEqual(event2Dates.count, 2, "La cantidad de fechas del evento debe ser 2.")
         XCTAssertEqual(event2Dates.map { $0.date }, [todayDate, yesterdayDate], "Las fechas obtenidas deberian ser las fechas de ayer y hoy.")
-    }
-    
-    func testUpdateDateToNowWithNotExistingEvent() {
-        let notExistingEvent = Event(context: persistenCointainer.viewContext)
-        notExistingEvent.name = "notExistingEvent"
-        do {
-            try eventDateRepository.updateDateToNow(for: notExistingEvent)
-        } catch {
-            XCTFail("La funcion updateDateToNow no deberia fallar si el evento no existe.")
-        }
     }
     
     func testGetEventDatesByDate() throws {

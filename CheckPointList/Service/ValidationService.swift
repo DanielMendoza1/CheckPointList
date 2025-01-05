@@ -30,4 +30,14 @@ class ValidationService {
             return false
         }
     }
+    
+    func isExistingEvent(of event: Event) -> Bool {
+        do {
+            return try eventRepository.getSelfEvent(for: event) != nil
+        } catch {
+            print("Error al consultar evento: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
 }

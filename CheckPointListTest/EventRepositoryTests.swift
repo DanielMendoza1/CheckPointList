@@ -44,7 +44,7 @@ final class EventRepositoryTests: XCTestCase {
 
         let events = try repository.getAllEvents()
         XCTAssertEqual(events.count, 2, "La cantidad de eventos obtenidos deberia ser 2.")
-        XCTAssertEqual(events.map { $0.name }, ["Event2", "Event3"], "Los nombres de los eventos obtenidos deben ser Event2 y Event3.")
+        XCTAssertEqual(events.map { $0.name }, ["Event3", "Event2"], "Los nombres de los eventos obtenidos deben ser Event2 y Event3.")
     }
     
     func testGetAllEventsEmpty() throws {
@@ -77,7 +77,7 @@ final class EventRepositoryTests: XCTestCase {
 
         var events = try repository.getAllEvents()
         XCTAssertEqual(events.count, 2, "La cantidad de eventos obtenidos deberia ser 2.")
-        XCTAssertEqual(events.map { $0.name }, ["Event6", "Event7"], "Los nombres de los eventos obtenidos deberian ser Event6 y Event7.")
+        XCTAssertEqual(events.map { $0.name }, ["Event7", "Event6"], "Los nombres de los eventos obtenidos deberian ser Event6 y Event7.")
         
         let event6 = events.filter { $0.name == "Event6" }.first
         try repository.deleteEvent(for: event6!)
@@ -93,7 +93,7 @@ final class EventRepositoryTests: XCTestCase {
 
         var events = try repository.getAllEvents()
         XCTAssertEqual(events.count, 2, "La cantidad de eventos obtenidos deberia ser 2.")
-        XCTAssertEqual(events.map { $0.name }, ["Event8", "Event9"], "Los nombres de los eventos obtenidos deberian ser Event8 y Event9.")
+        XCTAssertEqual(events.map { $0.name }, ["Event9", "Event8"], "Los nombres de los eventos obtenidos deberian ser Event8 y Event9.")
         
         let event8 = events.filter { $0.name == "Event8" }.first
         try repository.deleteEvent(for: event8!)

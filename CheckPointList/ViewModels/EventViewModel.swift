@@ -25,7 +25,7 @@ class EventViewModel: ObservableObject {
         do {
              events = try eventRepostiory.getAllEvents()
         } catch {
-            generateErrorMessage(for: "Error al obtener todos los eventos")
+            generateErrorMessage(for: "Error al obtener todos los eventos.")
         }
     }
     
@@ -33,7 +33,7 @@ class EventViewModel: ObservableObject {
         do {
             return try eventDateRepository.getMostRecentEventDateByEvent(for: event)
         } catch {
-            generateErrorMessage(for: "Error al obtener el EventDate más reciente")
+            generateErrorMessage(for: "Error al obtener el EventDate más reciente.")
             return nil
         }
     }
@@ -42,7 +42,7 @@ class EventViewModel: ObservableObject {
         do {
             return try eventDateRepository.getAllEventDatesByEvent(for: event)
         } catch {
-            generateErrorMessage(for: "Error al obtener los EventDates del evento")
+            generateErrorMessage(for: "Error al obtener los EventDates del evento.")
             return []
         }
     }
@@ -52,7 +52,7 @@ class EventViewModel: ObservableObject {
             try eventRepostiory.createEvent(name: name, date: date)
             getAllEvents()
         } catch {
-            generateErrorMessage(for: "Error al crear el evento")
+            generateErrorMessage(for: "Error al crear el evento.")
         }
     }
     
@@ -63,17 +63,21 @@ class EventViewModel: ObservableObject {
                 try eventRepostiory.deleteEvent(for: event)
                 getAllEvents()
             } catch {
-                generateErrorMessage(for: "Error al eleiminar el evento")
+                generateErrorMessage(for: "Error al eliminar el evento.")
             }
         }
     }
     
     func updateDateToNow(event: Event) {
-        do {
-            try eventDateRepository.updateDateToNow(for: event)
-            getAllEvents()
-        } catch {
-            generateErrorMessage(for: "Error al actualizar la fecha del evento")
+        if validationService.isExistingEvent(of: event) {
+            do {
+                try eventDateRepository.updateDateToNow(for: event)
+                getAllEvents()
+            } catch {
+                generateErrorMessage(for: "Error al actualizar la fecha del evento.")
+            }
+        } else {
+            generateErrorMessage(for: "El evento a actualizar no existe.")
         }
     }
     

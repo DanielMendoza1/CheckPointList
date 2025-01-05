@@ -7,20 +7,6 @@
 	objects = {
 
 /* Begin PBXContainerItemProxy section */
-		A96190522D1D217D00CABFDF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A95FBDF22CF28BB500C218AE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A95FBDF92CF28BB500C218AE;
-			remoteInfo = CheckPointList;
-		};
-		A961905F2D1D243500CABFDF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A95FBDF22CF28BB500C218AE /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A95FBDF92CF28BB500C218AE;
-			remoteInfo = CheckPointList;
-		};
 		A96190712D1D248800CABFDF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A95FBDF22CF28BB500C218AE /* Project object */;
@@ -32,9 +18,8 @@
 
 /* Begin PBXFileReference section */
 		A95FBDFA2CF28BB500C218AE /* CheckPointList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CheckPointList.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A961904E2D1D217D00CABFDF /* CheckPointListTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheckPointListTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A961905B2D1D243500CABFDF /* DateUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DateUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A961906D2D1D248800CABFDF /* CheckPointListTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CheckPointListTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A96191262D2264C900CABFDF /* CheckPointList.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = CheckPointList.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -58,20 +43,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A961904B2D1D217D00CABFDF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A96190582D1D243500CABFDF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A961906A2D1D248800CABFDF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -85,6 +56,7 @@
 		A95FBDF12CF28BB500C218AE = {
 			isa = PBXGroup;
 			children = (
+				A96191262D2264C900CABFDF /* CheckPointList.xctestplan */,
 				A95FBDFC2CF28BB500C218AE /* CheckPointList */,
 				A961906E2D1D248800CABFDF /* CheckPointListTest */,
 				A95FBDFB2CF28BB500C218AE /* Products */,
@@ -95,8 +67,6 @@
 			isa = PBXGroup;
 			children = (
 				A95FBDFA2CF28BB500C218AE /* CheckPointList.app */,
-				A961904E2D1D217D00CABFDF /* CheckPointListTests.xctest */,
-				A961905B2D1D243500CABFDF /* DateUtilsTests.xctest */,
 				A961906D2D1D248800CABFDF /* CheckPointListTest.xctest */,
 			);
 			name = Products;
@@ -126,46 +96,6 @@
 			productName = CheckPointList;
 			productReference = A95FBDFA2CF28BB500C218AE /* CheckPointList.app */;
 			productType = "com.apple.product-type.application";
-		};
-		A961904D2D1D217D00CABFDF /* CheckPointListTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A96190562D1D217D00CABFDF /* Build configuration list for PBXNativeTarget "CheckPointListTests" */;
-			buildPhases = (
-				A961904A2D1D217D00CABFDF /* Sources */,
-				A961904B2D1D217D00CABFDF /* Frameworks */,
-				A961904C2D1D217D00CABFDF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A96190532D1D217D00CABFDF /* PBXTargetDependency */,
-			);
-			name = CheckPointListTests;
-			packageProductDependencies = (
-			);
-			productName = CheckPointListTests;
-			productReference = A961904E2D1D217D00CABFDF /* CheckPointListTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A961905A2D1D243500CABFDF /* DateUtilsTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A96190612D1D243500CABFDF /* Build configuration list for PBXNativeTarget "DateUtilsTests" */;
-			buildPhases = (
-				A96190572D1D243500CABFDF /* Sources */,
-				A96190582D1D243500CABFDF /* Frameworks */,
-				A96190592D1D243500CABFDF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A96190602D1D243500CABFDF /* PBXTargetDependency */,
-			);
-			name = DateUtilsTests;
-			packageProductDependencies = (
-			);
-			productName = DateUtilsTests;
-			productReference = A961905B2D1D243500CABFDF /* DateUtilsTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		A961906C2D1D248800CABFDF /* CheckPointListTest */ = {
 			isa = PBXNativeTarget;
@@ -203,15 +133,6 @@
 					A95FBDF92CF28BB500C218AE = {
 						CreatedOnToolsVersion = 16.0;
 					};
-					A961904D2D1D217D00CABFDF = {
-						CreatedOnToolsVersion = 16.0;
-						LastSwiftMigration = 1600;
-						TestTargetID = A95FBDF92CF28BB500C218AE;
-					};
-					A961905A2D1D243500CABFDF = {
-						CreatedOnToolsVersion = 16.0;
-						TestTargetID = A95FBDF92CF28BB500C218AE;
-					};
 					A961906C2D1D248800CABFDF = {
 						CreatedOnToolsVersion = 16.0;
 						TestTargetID = A95FBDF92CF28BB500C218AE;
@@ -233,8 +154,6 @@
 			projectRoot = "";
 			targets = (
 				A95FBDF92CF28BB500C218AE /* CheckPointList */,
-				A961904D2D1D217D00CABFDF /* CheckPointListTests */,
-				A961905A2D1D243500CABFDF /* DateUtilsTests */,
 				A961906C2D1D248800CABFDF /* CheckPointListTest */,
 			);
 		};
@@ -242,20 +161,6 @@
 
 /* Begin PBXResourcesBuildPhase section */
 		A95FBDF82CF28BB500C218AE /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A961904C2D1D217D00CABFDF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A96190592D1D243500CABFDF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -279,20 +184,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A961904A2D1D217D00CABFDF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A96190572D1D243500CABFDF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A96190692D1D248800CABFDF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -303,16 +194,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A96190532D1D217D00CABFDF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A95FBDF92CF28BB500C218AE /* CheckPointList */;
-			targetProxy = A96190522D1D217D00CABFDF /* PBXContainerItemProxy */;
-		};
-		A96190602D1D243500CABFDF /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A95FBDF92CF28BB500C218AE /* CheckPointList */;
-			targetProxy = A961905F2D1D243500CABFDF /* PBXContainerItemProxy */;
-		};
 		A96190722D1D248800CABFDF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A95FBDF92CF28BB500C218AE /* CheckPointList */;
@@ -496,79 +377,6 @@
 			};
 			name = Release;
 		};
-		A96190542D1D217D00CABFDF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = danielornelas.CheckPointListTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CheckPointListTests/CheckPointListTests-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CheckPointList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CheckPointList";
-			};
-			name = Debug;
-		};
-		A96190552D1D217D00CABFDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = danielornelas.CheckPointListTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "CheckPointListTests/CheckPointListTests-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CheckPointList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CheckPointList";
-			};
-			name = Release;
-		};
-		A96190622D1D243500CABFDF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = danielornelas.DateUtilsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CheckPointList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CheckPointList";
-			};
-			name = Debug;
-		};
-		A96190632D1D243500CABFDF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = danielornelas.DateUtilsTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CheckPointList.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CheckPointList";
-			};
-			name = Release;
-		};
 		A96190742D1D248800CABFDF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -620,24 +428,6 @@
 			buildConfigurations = (
 				A95FBE0E2CF28BB700C218AE /* Debug */,
 				A95FBE0F2CF28BB700C218AE /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A96190562D1D217D00CABFDF /* Build configuration list for PBXNativeTarget "CheckPointListTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A96190542D1D217D00CABFDF /* Debug */,
-				A96190552D1D217D00CABFDF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A96190612D1D243500CABFDF /* Build configuration list for PBXNativeTarget "DateUtilsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A96190622D1D243500CABFDF /* Debug */,
-				A96190632D1D243500CABFDF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
