@@ -40,4 +40,8 @@ class ValidationService {
         }
     }
     
+    func isEmptyEventName(of name: String) -> Bool {
+        return name.isEmpty
+    }
+    
 }

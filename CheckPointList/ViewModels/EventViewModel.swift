@@ -48,6 +48,11 @@ class EventViewModel: ObservableObject {
     }
     
     func addEvent(name: String, date: Date) {
+        guard !validationService.isDuplicatedName(of: name), !validationService.isEmptyEventName(of: name) else {
+            generateErrorMessage(for: "El nombre del evento ya existe o es vacio.")
+            return
+        }
+        
         do {
             try eventRepostiory.createEvent(name: name, date: date)
             getAllEvents()
@@ -58,8 +63,13 @@ class EventViewModel: ObservableObject {
     
     func deleteEvent(at offset: IndexSet) {
         offset.forEach { index in
-            let event = events[index]
+            guard index >= 0 && index < events.count else {
+                generateErrorMessage(for: "Índice del evento a eliminar fuera de rango.")
+                return
+            }
+            
             do {
+                let event = events[index]
                 try eventRepostiory.deleteEvent(for: event)
                 getAllEvents()
             } catch {
@@ -69,15 +79,16 @@ class EventViewModel: ObservableObject {
     }
     
     func updateDateToNow(event: Event) {
-        if validationService.isExistingEvent(of: event) {
-            do {
-                try eventDateRepository.updateDateToNow(for: event)
-                getAllEvents()
-            } catch {
-                generateErrorMessage(for: "Error al actualizar la fecha del evento.")
-            }
-        } else {
+        guard validationService.isExistingEvent(of: event) else {
             generateErrorMessage(for: "El evento a actualizar no existe.")
+            return
+        }
+        
+        do {
+            try eventDateRepository.updateDateToNow(for: event)
+            getAllEvents()
+        } catch {
+            generateErrorMessage(for: "Error al actualizar la fecha del evento.")
         }
     }
     

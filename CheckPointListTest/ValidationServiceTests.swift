@@ -96,4 +96,14 @@ final class ValidationServiceTests: XCTestCase {
         XCTAssertTrue(isExistingEvent, "El evento deberia existir.")
     }
     //TODO: Create test for non existing event
+
+    func testIsEmptyEventName() throws {
+        let isEmptyEventName: Bool = validationService.isEmptyEventName(of: "")
+        XCTAssertTrue(isEmptyEventName, "El nombre del evento deberia estar vacio.")
+    }
+    
+    func testIsEmptyEventNameNotEmpty() throws {
+        let isEmptyEventName: Bool = validationService.isEmptyEventName(of: "notEmpty")
+        XCTAssertFalse(isEmptyEventName, "El nombre del evento no deberia estar vacio.")
+    }
 }
