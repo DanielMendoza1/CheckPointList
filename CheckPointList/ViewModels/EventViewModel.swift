@@ -30,6 +30,16 @@ class EventViewModel: ObservableObject {
     }
     
     func getMostRecentEventDateByEvent(for event: Event) -> EventDate? {
+        guard let eventId: UUID  = event.id else {
+            generateErrorMessage(for: "El evento a consultar no tiene Id.")
+            return nil
+        }
+        
+        guard validationService.isExistingEvent(for: eventId) else {
+            generateErrorMessage(for: "El evento a consultar no existe.")
+            return nil
+        }
+        
         do {
             return try eventDateRepository.getMostRecentEventDateByEvent(for: event)
         } catch {
@@ -39,6 +49,16 @@ class EventViewModel: ObservableObject {
     }
     
     func getAllEventDatesByEvent(for event: Event) -> [EventDate] {
+        guard let eventId: UUID  = event.id else {
+            generateErrorMessage(for: "El evento a consultar no tiene Id.")
+            return []
+        }
+        
+        guard validationService.isExistingEvent(for: eventId) else {
+            generateErrorMessage(for: "El evento a consultar no existe.")
+            return []
+        }
+        
         do {
             return try eventDateRepository.getAllEventDatesByEvent(for: event)
         } catch {
@@ -48,8 +68,13 @@ class EventViewModel: ObservableObject {
     }
     
     func addEvent(name: String, date: Date) {
-        guard !validationService.isDuplicatedName(of: name), !validationService.isEmptyEventName(of: name) else {
-            generateErrorMessage(for: "El nombre del evento ya existe o es vacio.")
+        guard !validationService.isDuplicatedName(of: name) else {
+            generateErrorMessage(for: "El nombre del evento ya existe.")
+            return
+        }
+        
+        guard !validationService.isEmptyEventName(of: name) else {
+            generateErrorMessage(for: "El nombre del evento es vacio.")
             return
         }
         
@@ -78,9 +103,19 @@ class EventViewModel: ObservableObject {
         }
     }
     
-    func updateDateToNow(event: Event) {
-        guard validationService.isExistingEvent(of: event) else {
+    func updateDateToNow(for event: Event) {
+        guard let eventId: UUID  = event.id else {
+            generateErrorMessage(for: "El evento a actualizar no tiene Id.")
+            return
+        }
+                
+        guard validationService.isExistingEvent(for: eventId) else {
             generateErrorMessage(for: "El evento a actualizar no existe.")
+            return
+        }
+        
+        guard !isDuplicatedEventDate(for: event, by: Date()) else {
+            generateErrorMessage(for: "El evento a actualizar ya tiene una fecha actual.")
             return
         }
         

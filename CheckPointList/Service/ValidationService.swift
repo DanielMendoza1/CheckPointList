@@ -31,9 +31,9 @@ class ValidationService {
         }
     }
     
-    func isExistingEvent(of event: Event) -> Bool {
+    func isExistingEvent(for id: UUID) -> Bool {
         do {
-            return try eventRepository.getSelfEvent(for: event) != nil
+            return try eventRepository.getEventById(for: id) != nil
         } catch {
             print("Error al consultar evento: \(error.localizedDescription)")
             return false
@@ -43,5 +43,4 @@ class ValidationService {
     func isEmptyEventName(of name: String) -> Bool {
         return name.isEmpty
     }
-    
 }

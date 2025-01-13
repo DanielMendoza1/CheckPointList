@@ -17,7 +17,7 @@ struct EventDetailsView: View {
                 }
                 Section {
                     Button(action: {
-                        viewModel.updateDateToNow(event: event)
+                        viewModel.updateDateToNow(for: event)
                     }) {
                         Text("Actualizar fecha")
                     }

@@ -22,11 +22,13 @@ class EventRepository {
         return try context.fetch(fetchRequest)
     }
     
-    func getSelfEvent(for event: Event) throws -> Event? {
+    func getEventById(for id: UUID) throws -> Event? {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "SELF == %@", event)
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)
         fetchRequest.fetchLimit = 1
-        return try context.fetch(fetchRequest).first
+        
+        let result: [Event] = try context.fetch(fetchRequest)
+        return result.first(where: { !$0.hasChanges })
     }
     
     func createEvent(name: String, date: Date) throws {
@@ -35,6 +37,7 @@ class EventRepository {
         newEventDate.timestamp = Date()
         
         let newEvent = Event(context: context)
+        newEvent.id = UUID()
         newEvent.name = name
         newEvent.addToDates(newEventDate)
         try context.save()

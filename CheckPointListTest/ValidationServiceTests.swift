@@ -91,11 +91,22 @@ final class ValidationServiceTests: XCTestCase {
         try eventRepository.createEvent(name: "Event1", date: Date())
         
         let event1: Event = try XCTUnwrap(eventRepository.getEventsByName(for: "Event1").first, "No se encontró el evento, test fallido.")
-        let isExistingEvent: Bool = validationService.isExistingEvent(of: event1)
+        let event1Id: UUID = try XCTUnwrap(event1.id)
+        let isExistingEvent: Bool = validationService.isExistingEvent(for: event1Id)
         
         XCTAssertTrue(isExistingEvent, "El evento deberia existir.")
     }
-    //TODO: Create test for non existing event
+    
+    func testIsExistingEventNotExisting() throws {
+        let notExistingEvent: Event = Event(context: persistenCointainer.viewContext)
+        notExistingEvent.id = UUID()
+        notExistingEvent.name = "NotExistingEvent"
+        
+        let notExistingEventId: UUID = try XCTUnwrap(notExistingEvent.id)
+        let isExistingEvent: Bool = validationService.isExistingEvent(for: notExistingEventId)
+        
+        XCTAssertFalse(isExistingEvent, "El evento no deberia existir.")
+    }
 
     func testIsEmptyEventName() throws {
         let isEmptyEventName: Bool = validationService.isEmptyEventName(of: "")
