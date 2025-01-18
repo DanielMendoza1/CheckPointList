@@ -102,6 +102,7 @@ final class EventDateRepository: XCTestCase {
         let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         let notExistingEvent = Event(context: persistenCointainer.viewContext)
         notExistingEvent.name = "notExistingEvent"
+        notExistingEvent.id = UUID()
         
         try eventRepository.createEvent(name: "Event5", date: yesterdayDate)
         let event5 = try eventRepository.getEventsByName(for: "Event5").first

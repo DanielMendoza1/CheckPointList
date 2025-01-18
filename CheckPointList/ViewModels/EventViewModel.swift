@@ -11,6 +11,7 @@ class EventViewModel: ObservableObject {
     private let eventRepostiory: EventRepository
     private let eventDateRepository: EventDateReporistory
     private let validationService: ValidationService
+    private let errorManager: ErrorManager
 
     init(context: NSManagedObjectContext) {
         self.viewContext = context
@@ -18,6 +19,10 @@ class EventViewModel: ObservableObject {
         self.eventDateRepository = EventDateReporistory(context: context)
         self.validationService = ValidationService(eventRepository: eventRepostiory,
                                                    eventDateRepository: eventDateRepository)
+        self.errorManager = ErrorManager()
+        errorManager.$errorMessage.assign(to: &$errorMessage)
+        errorManager.$showError.assign(to: &$showError)
+        
         getAllEvents()
     }
     
@@ -25,56 +30,56 @@ class EventViewModel: ObservableObject {
         do {
              events = try eventRepostiory.getAllEvents()
         } catch {
-            generateErrorMessage(for: "Error al obtener todos los eventos.")
+            showError(for: "Error al obtener todos los eventos.")
         }
     }
     
     func getMostRecentEventDateByEvent(for event: Event) -> EventDate? {
         guard let eventId: UUID  = event.id else {
-            generateErrorMessage(for: "El evento a consultar no tiene Id.")
+            showError(for: "El evento a consultar no tiene Id.")
             return nil
         }
         
         guard validationService.isExistingEvent(for: eventId) else {
-            generateErrorMessage(for: "El evento a consultar no existe.")
+            showError(for: "El evento a consultar no existe.")
             return nil
         }
         
         do {
             return try eventDateRepository.getMostRecentEventDateByEvent(for: event)
         } catch {
-            generateErrorMessage(for: "Error al obtener el EventDate más reciente.")
+            showError(for: "Error al obtener el EventDate más reciente.")
             return nil
         }
     }
     
     func getAllEventDatesByEvent(for event: Event) -> [EventDate] {
         guard let eventId: UUID  = event.id else {
-            generateErrorMessage(for: "El evento a consultar no tiene Id.")
+            showError(for: "El evento a consultar no tiene Id.")
             return []
         }
         
         guard validationService.isExistingEvent(for: eventId) else {
-            generateErrorMessage(for: "El evento a consultar no existe.")
+            showError(for: "El evento a consultar no existe.")
             return []
         }
         
         do {
             return try eventDateRepository.getAllEventDatesByEvent(for: event)
         } catch {
-            generateErrorMessage(for: "Error al obtener los EventDates del evento.")
+            showError(for: "Error al obtener los EventDates del evento.")
             return []
         }
     }
     
     func addEvent(name: String, date: Date) {
         guard !validationService.isDuplicatedName(of: name) else {
-            generateErrorMessage(for: "El nombre del evento ya existe.")
+            showError(for: "El nombre del evento ya existe.")
             return
         }
         
         guard !validationService.isEmptyEventName(of: name) else {
-            generateErrorMessage(for: "El nombre del evento es vacio.")
+            showError(for: "El nombre del evento es vacio.")
             return
         }
         
@@ -82,14 +87,14 @@ class EventViewModel: ObservableObject {
             try eventRepostiory.createEvent(name: name, date: date)
             getAllEvents()
         } catch {
-            generateErrorMessage(for: "Error al crear el evento.")
+            showError(for: "Error al crear el evento.")
         }
     }
     
     func deleteEvent(at offset: IndexSet) {
         offset.forEach { index in
             guard index >= 0 && index < events.count else {
-                generateErrorMessage(for: "Índice del evento a eliminar fuera de rango.")
+                showError(for: "Índice del evento a eliminar fuera de rango.")
                 return
             }
             
@@ -98,24 +103,24 @@ class EventViewModel: ObservableObject {
                 try eventRepostiory.deleteEvent(for: event)
                 getAllEvents()
             } catch {
-                generateErrorMessage(for: "Error al eliminar el evento.")
+                showError(for: "Error al eliminar el evento.")
             }
         }
     }
     
     func updateDateToNow(for event: Event) {
         guard let eventId: UUID  = event.id else {
-            generateErrorMessage(for: "El evento a actualizar no tiene Id.")
+            showError(for: "El evento a actualizar no tiene Id.")
             return
         }
                 
         guard validationService.isExistingEvent(for: eventId) else {
-            generateErrorMessage(for: "El evento a actualizar no existe.")
+            showError(for: "El evento a actualizar no existe.")
             return
         }
         
         guard !isDuplicatedEventDate(for: event, by: Date()) else {
-            generateErrorMessage(for: "El evento a actualizar ya tiene una fecha actual.")
+            showError(for: "El evento a actualizar ya tiene una fecha actual.")
             return
         }
         
@@ -123,7 +128,7 @@ class EventViewModel: ObservableObject {
             try eventDateRepository.updateDateToNow(for: event)
             getAllEvents()
         } catch {
-            generateErrorMessage(for: "Error al actualizar la fecha del evento.")
+            showError(for: "Error al actualizar la fecha del evento.")
         }
     }
     
@@ -135,13 +140,11 @@ class EventViewModel: ObservableObject {
         return validationService.isDuplicatedEventDate(for: event, by: date)
     }
     
-    func resetErrorMessage() {
-        self.errorMessage = ""
-        self.showError = false
+    func showError(for message: String) {
+        errorManager.showError(for: message)
     }
     
-    func generateErrorMessage(for errorMessage: String) {
-        self.errorMessage = errorMessage
-        self.showError = true
+    func resetError() {
+        errorManager.resetError()
     }
 }

@@ -25,7 +25,7 @@ struct EventListView: View {
                         }
                         .alert("Error", isPresented: $viewModel.showError) {
                             Button("OK", role: .cancel) {
-                                viewModel.resetErrorMessage()
+                                viewModel.resetError()
                             }
                         } message: {
                             Text(viewModel.errorMessage)
@@ -48,8 +48,3 @@ struct EventListView: View {
         }
     }
 }
-
-#Preview {
-    EventListView(context: PersistenceController.preview.container.viewContext)
-}
-

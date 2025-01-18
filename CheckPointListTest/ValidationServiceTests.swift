@@ -82,6 +82,7 @@ final class ValidationServiceTests: XCTestCase {
         let nombreEvento: String = "Event1"
         let event1: Event = Event(context: persistenCointainer.viewContext)
         event1.name = nombreEvento
+        event1.id = UUID()
         
         let isDuplicatedEventDate: Bool = validationService.isDuplicatedEventDate(for: event1, by: fechaActual)
         XCTAssertFalse(isDuplicatedEventDate, "La fecha del evento no deberia ser duplicada.")
