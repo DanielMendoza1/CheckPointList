@@ -17,6 +17,7 @@ struct EventListView: View {
                         VStack(alignment: .leading) {
                             Text(event.name ?? "Sin Nombre")
                                 .foregroundColor(.primary)
+                                .accessibilityIdentifier("event_\(event.name ?? "Sin Nombre")")
                             if let date = viewModel.getMostRecentEventDateByEvent(for: event)?.date {
                                 Text("Fecha: \(Utils.formatDateToText(of: date))")
                                     .font(.footnote)
@@ -40,6 +41,7 @@ struct EventListView: View {
                     Button(action: { showingAddEventView = true }) {
                         Label("Agregar Evento", systemImage: "plus")
                     }
+                    .accessibilityIdentifier("AddEventButton")
                 }
             }
             .sheet(isPresented: $showingAddEventView) {

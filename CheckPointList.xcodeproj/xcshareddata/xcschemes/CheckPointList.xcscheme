@@ -68,6 +68,17 @@
                ReferencedContainer = "container:CheckPointList.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A9EA127E2D3C582A00CF23DE"
+               BuildableName = "CheckPointListUITests.xctest"
+               BlueprintName = "CheckPointListUITests"
+               ReferencedContainer = "container:CheckPointList.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

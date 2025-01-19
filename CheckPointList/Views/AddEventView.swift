@@ -11,15 +11,19 @@ struct AddEventView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Detalles del evento")) {
+                Section(header: Text("Detalles del evento")
+                    .accessibilityIdentifier("eventDetailsSectionHeader")) {
                     TextField("Nombre", text: $name)
+                        .accessibilityIdentifier("nameTextField")
                     DatePicker("Fecha", selection: $date)
+                        .accessibilityIdentifier("eventDatePicker")
                 }
                 Button("Guardar") {
                     viewModel.addEvent(name: name, date: date)
                     presentationMode.wrappedValue.dismiss()
                 }
                 .disabled(name.isEmpty || viewModel.isDuplicatedName(for: name))
+                .accessibilityIdentifier("saveButton")
             }
             .navigationTitle("Nuevo evento")
         }
