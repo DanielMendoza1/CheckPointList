@@ -23,7 +23,7 @@ jobs:
 
     - name: Install missing simulators
       run: |
-        xcode-select --switch /Applications/Xcode_15.4.app
+        sudo xcode-select --switch /Applications/Xcode_15.4.app
         sudo xcodebuild -installDeployment -sdk iphoneos
 
     - name: Build and test
