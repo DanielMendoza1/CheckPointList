@@ -1,4 +1,4 @@
-name: XCTest
+name: Build and Test
 
 on:
   push:
@@ -9,29 +9,24 @@ on:
       - main
 
 jobs:
-  test-ios:
+  build:
     runs-on: macos-latest
 
     steps:
+    - name: Check out code
+      uses: actions/checkout@v2
 
-    - name: List available simulators
-      run: xcrun simctl list devices
-    
-    - name: Set up Xcode 16.2
-      uses: maxim-lobanov/setup-xcode@v1
-      with:
-          xcode-version: '16.2'
-
-    - name: see version xcode
-      run: xcodebuild -version
-
-    # Checkout the repository
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    # Run tests on iPhone 14 Simulator with iOS 16.0
-    - name: Run Tests on iPhone 14 Simulator (iOS 16.0)
+    - name: Set up Xcode
       run: |
-        xcodebuild test \
-          -scheme 'CheckPointList' \
-          -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro'
+        sudo xcode-select --switch /Applications/Xcode_14.2.app # Cambia la ruta si usas otra versión
+        sudo xcodebuild -runFirstLaunch
+
+    - name: Install missing simulators
+      run: |
+        # Comando para instalar simuladores de iOS específicos si es necesario
+        xcode-select --switch /Applications/Xcode_14.2.app
+        sudo xcodebuild -installDeployment -sdk iphoneos
+
+    - name: Build and test
+      run: |
+        xcodebuild clean build -scheme CheckPointList -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro'
