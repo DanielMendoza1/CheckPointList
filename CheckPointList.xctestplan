@@ -17,13 +17,6 @@
   },
   "testTargets" : [
     {
-      "target" : {
-        "containerPath" : "container:CheckPointList.xcodeproj",
-        "identifier" : "A9EA127E2D3C582A00CF23DE",
-        "name" : "CheckPointListUITests"
-      }
-    },
-    {
       "parallelizable" : true,
       "target" : {
         "containerPath" : "container:CheckPointList.xcodeproj",

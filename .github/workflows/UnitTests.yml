@@ -1,4 +1,4 @@
-name: iOS Tests
+name: XCTest
 
 on:
   push:
@@ -9,27 +9,21 @@ on:
       - main
 
 jobs:
-  ios-tests:
+  test-ios:
     runs-on: macos-latest
 
     steps:
+    # Checkout the repository
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      # 1. Definir version de Xcode
-      - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
-        
-      # 2. Obtener el código fuente
-      - name: Checkout code
-        uses: actions/checkout@v3
+    # Install any dependencies
+    - name: Install Dependencies
+      run: swift package resolve
 
-      - name: xcrun simctl list devices
-        run: xcrun simctl list devices
-
-      # 2. Ejecutar pruebas unitarias
-      - name: Run Unit Tests
-        run: |
-          xcodebuild \
-            -scheme CheckPointList \
-            -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
-            test
-
+    # Run tests on iPhone 14 Simulator with iOS 16.0
+    - name: Run Tests on iPhone 14 Simulator (iOS 16.0)
+      run: |
+        xcodebuild test \
+          -scheme 'Requestify' \
+          -destination 'platform=iOS Simulator,name=iPhone 14,OS=16.0'

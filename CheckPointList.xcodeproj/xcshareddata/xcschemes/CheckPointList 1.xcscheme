@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1600"
+   LastUpgradeVersion = "1620"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -27,59 +27,8 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <TestPlans>
-         <TestPlanReference
-            reference = "container:CheckPointList.xctestplan"
-            default = "YES">
-         </TestPlanReference>
-      </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A961904D2D1D217D00CABFDF"
-               BuildableName = "CheckPointListTests.xctest"
-               BlueprintName = "CheckPointListTests"
-               ReferencedContainer = "container:CheckPointList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A961905A2D1D243500CABFDF"
-               BuildableName = "DateUtilsTests.xctest"
-               BlueprintName = "DateUtilsTests"
-               ReferencedContainer = "container:CheckPointList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A961906C2D1D248800CABFDF"
-               BuildableName = "CheckPointListTest.xctest"
-               BlueprintName = "CheckPointListTest"
-               ReferencedContainer = "container:CheckPointList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9EA127E2D3C582A00CF23DE"
-               BuildableName = "CheckPointListUITests.xctest"
-               BlueprintName = "CheckPointListUITests"
-               ReferencedContainer = "container:CheckPointList.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      shouldAutocreateTestPlan = "YES">
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -101,12 +50,6 @@
             ReferencedContainer = "container:CheckPointList.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = ""
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
