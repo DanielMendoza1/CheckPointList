@@ -19,7 +19,6 @@ jobs:
         run: |
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           sudo xcodebuild -runFirstLaunch
-          sudo xcodebuild -install-all-simulator-components
         
       - name: List available simulators
         run: xcrun simctl list devices
