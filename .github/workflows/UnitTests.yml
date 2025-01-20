@@ -13,7 +13,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # 1. Obtener el código fuente
+
+      # 1. Definir version de Xcode
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+        
+      # 2. Obtener el código fuente
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -22,6 +27,6 @@ jobs:
         run: |
           xcodebuild \
             -scheme CheckPointList \
-            -destination "platform=iOS Simulator,name=iPhone 14" \
+            -destination "platform=iOS Simulator,name=iPhone 14", OS=16.2 \
             test
 
