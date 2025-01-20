@@ -17,3 +17,8 @@ jobs:
 
       - name: Print Xcode version
         run: xcodebuild -version
+
+      - name: Install iOS 17.0 Simulator
+        run: |
+          xcrun simctl create "iPhone 15 Pro (iOS 18.2)" com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro com.apple.CoreSimulator.SimRuntime.iOS-18-2
+      
