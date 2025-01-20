@@ -21,6 +21,9 @@ jobs:
       - name: Print Xcode version
         run: xcodebuild -version
 
+      - name: List All Platforms at Git Actions Env
+        run: xcodebuild -downloadAllPlatforms -list
+
       - name: Install iOS Simulator 18.2
         run: |
           sudo xcode-select --switch /Applications/Xcode_16.2.app
