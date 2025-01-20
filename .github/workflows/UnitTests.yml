@@ -1,31 +1,34 @@
-name: Build and Test
+name: iOS Build and Test
 
 on:
   push:
-    branches:
-      - main
-  pull_request:
     branches:
       - main
 
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up Xcode
-      run: |
-        sudo xcode-select --switch /Applications/Xcode_15.4.app
-        sudo xcodebuild -runFirstLaunch
+      - name: Set up Xcode
+        run: sudo xcode-select -s /Applications/Xcode_15.4.app 
 
-    - name: Install missing simulators
-      run: |
-        sudo xcode-select --switch /Applications/Xcode_15.4.app
-        sudo xcodebuild -installDeployment -sdk iphoneos
+      - name: Install dependencies
+        run: |
+          bundle install
+          pod install
 
-    - name: Build and test
-      run: |
-        xcodebuild clean build -scheme CheckPointList -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro'
+      - name: Install required simulators
+        run: |
+          xcode-select -s /Applications/Xcode.app/Contents/Developer
+          sudo xcodebuild -runFirstLaunch
+          sudo xcodebuild -install-all-simulator-components
+        
+      - name: List available simulators
+        run: xcrun simctl list devices
+        
+      - name: Build with xcodebuild
+        run: |
+          xcodebuild clean build -scheme CheckPointList -destination 'platform=iOS Simulator,OS=17.0,name=iPhone 15 Pro'
