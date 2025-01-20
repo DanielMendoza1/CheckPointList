@@ -17,7 +17,7 @@ jobs:
 
       - name: Install required simulators
         run: |
-          xcode-select -s /Applications/Xcode.app/Contents/Developer
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           sudo xcodebuild -runFirstLaunch
           sudo xcodebuild -install-all-simulator-components
         
