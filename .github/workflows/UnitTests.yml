@@ -22,11 +22,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: xcrun simctl list devices
+        run: xcrun simctl list devices
+
       # 2. Ejecutar pruebas unitarias
       - name: Run Unit Tests
         run: |
           xcodebuild \
             -scheme CheckPointList \
-            -destination "platform=iOS Simulator,name=iPhone 14", OS=16.2 \
+            -destination "platform=iOS Simulator,name=iPhone 15,OS=17.5" \
             test
 
