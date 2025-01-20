@@ -25,9 +25,7 @@ jobs:
         run: xcodebuild -downloadAllPlatforms -list
 
       - name: Install iOS Simulator 18.2
-        uses: muukii/actions-xcode-install-simulator@main
-        with:
-          ios_version: "18.2"
+        run: xcodebuild -downloadSimulator "iOS 18.2"
 
       - name: Create iOS 18.2 Simulator
         run: xcrun simctl create "iPhone 15 Pro (iOS 18.2)" com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro com.apple.CoreSimulator.SimRuntime.iOS-18-2
