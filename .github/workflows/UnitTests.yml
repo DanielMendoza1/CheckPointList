@@ -1,0 +1,27 @@
+name: iOS Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ios-tests:
+    runs-on: macos-latest
+
+    steps:
+      # 1. Obtener el código fuente
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Ejecutar pruebas unitarias
+      - name: Run Unit Tests
+        run: |
+          xcodebuild \
+            -scheme CheckPointList \
+            -destination "platform=iOS Simulator,name=iPhone 14" \
+            test
+
