@@ -14,6 +14,9 @@ jobs:
 
     steps:
 
+    - name: List available simulators
+      run: xcrun simctl list devices
+    
     - name: Set up Xcode 16.2
       uses: maxim-lobanov/setup-xcode@v1
       with:
