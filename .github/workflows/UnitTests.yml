@@ -14,9 +14,14 @@ jobs:
 
     steps:
 
+    - name: Set up Xcode 16.2
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+          xcode-version: '16.2'
+
     - name: see version xcode
       run: xcodebuild -version
-      
+
     # Checkout the repository
     - name: Checkout repository
       uses: actions/checkout@v4
