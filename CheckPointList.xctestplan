@@ -23,6 +23,13 @@
         "identifier" : "A961906C2D1D248800CABFDF",
         "name" : "CheckPointListTest"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:CheckPointList.xcodeproj",
+        "identifier" : "A9EA127E2D3C582A00CF23DE",
+        "name" : "CheckPointListUITests"
+      }
     }
   ],
   "version" : 1

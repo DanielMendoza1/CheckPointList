@@ -226,36 +226,6 @@
             endingLineNumber = "9"
             landmarkName = "showError(for:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "1D07FF41-1FA2-4D51-A796-08B95FB31B36 - c1676a46f8d8b180"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CheckPointList.ErrorManager.showError(for: Swift.String) -&gt; ()"
-                  moduleName = "CheckPointList.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alejandro/Documents/CheckPointList/CheckPointList/Manager/ErrorManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "9"
-                  endingLineNumber = "9">
-               </Location>
-               <Location
-                  uuid = "1D07FF41-1FA2-4D51-A796-08B95FB31B36 - 69450ba719bf37fb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in CheckPointList.ErrorManager.showError(for: Swift.String) -&gt; ()"
-                  moduleName = "CheckPointList.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/alejandro/Documents/CheckPointList/CheckPointList/Manager/ErrorManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "9"
-                  endingLineNumber = "9">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
