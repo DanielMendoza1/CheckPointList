@@ -12,26 +12,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
-      - name: List available runtimes
-        run: xcrun simctl list runtimes
-
       - name: Set Xcode version to 16.2
         run: sudo xcode-select --switch /Applications/Xcode_16.2.app
-
-      - name: Print Xcode version
-        run: xcodebuild -version
-
-      - name: List All Platforms at Git Actions Env
-        run: xcodebuild -downloadAllPlatforms -list
 
       - name: Install iOS Simulator 18.2
         run: xcodebuild -downloadPlatform iOS -verbose 
 
       - name: Create iOS 18.2 Simulator
         run: xcrun simctl create "iPhone 15 Pro (iOS 18.2)" com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro com.apple.CoreSimulator.SimRuntime.iOS-18-2
-      
-      - name: Boot iOS Simulator
-        run: xcrun simctl boot "iPhone 15 Pro (iOS 18.2)"
       
       - name: Run Tests
         run: |
