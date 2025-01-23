@@ -15,7 +15,7 @@ struct AddEventView: View {
                     .accessibilityIdentifier("eventDetailsSectionHeader")) {
                     TextField("Nombre", text: $name)
                         .accessibilityIdentifier("nameTextField")
-                    DatePicker("Fecha", selection: $date)
+                        DatePicker("Fecha", selection: $date, displayedComponents: .date)
                         .accessibilityIdentifier("eventDatePicker")
                 }
                 Button("Guardar") {

@@ -41,13 +41,13 @@ final class CheckPointListUITestsLaunchTests: XCTestCase {
                 
         let eventDatePicker = app.datePickers.element(boundBy: 0)
         
-        XCTAssert(eventDatePicker.exists, "El date picker par el evento no existe.")
+        XCTAssert(eventDatePicker.exists, "El date picker para el evento no existe.")
         
         eventDatePicker.tap()
 
-        let dateButton: XCUIElement = eventDatePicker.collectionViews.buttons["Wednesday, 22 January"]
+        let dateButton: XCUIElement = eventDatePicker.collectionViews.buttons.element(boundBy: 6)
 
-        XCTAssertTrue(dateButton.exists, "El boton del dia 22 no existe.")
+        XCTAssertTrue(dateButton.exists, "El boton del dia 7 no existe.")
 
         dateButton.tap()
         nameTextField.tap()
