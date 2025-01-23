@@ -6,6 +6,7 @@ final class CheckPointListUITestsLaunchTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app.launch()
+        XCTAssertTrue(app.buttons["AddEventButton"].waitForExistence(timeout: 30), "la aplicacion no se lanza correctamente")
     }
 
     @MainActor
