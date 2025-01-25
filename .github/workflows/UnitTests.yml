@@ -6,31 +6,6 @@ on:
       - main
 
 jobs:
-  Unit:
-    name: Run Unit Tests
-    runs-on: macos-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      
-      - name: Set Xcode version to 16.2
-        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
-
-      - name: Install iOS Simulator 18.2
-        run: xcodebuild -downloadPlatform iOS -verbose 
-
-      - name: Create iOS 18.2 Simulator
-        run: xcrun simctl create "iPhone 15 Pro (iOS 18.2)" com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro com.apple.CoreSimulator.SimRuntime.iOS-18-2
-      
-      - name: Run Tests
-        run: |
-          xcodebuild test \
-            -scheme CheckPointList \
-            -destination 'platform=iOS Simulator,OS=18.2,name=iPhone 15 Pro (iOS 18.2)'
-
-      - name: Shutdown iOS Simulator
-        run: xcrun simctl shutdown all
           
   lint:
     name: Run SwiftLint
@@ -59,3 +34,30 @@ jobs:
         if: failure()
         run: |
           echo "::error file=$file,line=$line,col=$col::$message"
+
+  Unit:
+    name: Run Unit Tests
+    runs-on: macos-latest
+    needs: lint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Set Xcode version to 16.2
+        run: sudo xcode-select --switch /Applications/Xcode_16.2.app
+
+      - name: Install iOS Simulator 18.2
+        run: xcodebuild -downloadPlatform iOS -verbose 
+
+      - name: Create iOS 18.2 Simulator
+        run: xcrun simctl create "iPhone 15 Pro (iOS 18.2)" com.apple.CoreSimulator.SimDeviceType.iPhone-15-Pro com.apple.CoreSimulator.SimRuntime.iOS-18-2
+      
+      - name: Run Tests
+        run: |
+          xcodebuild test \
+            -scheme CheckPointList \
+            -destination 'platform=iOS Simulator,OS=18.2,name=iPhone 15 Pro (iOS 18.2)'
+
+      - name: Shutdown iOS Simulator
+        run: xcrun simctl shutdown all
