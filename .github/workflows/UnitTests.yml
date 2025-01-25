@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  UnitTest:
     runs-on: macos-latest
     steps:
       - name: Checkout code

@@ -9,4 +9,9 @@ line_length:
 
 opt_in_rules:
   - indentation_width
-
+  - empty_string
+  - empty_xctest_method
+  - no_empty_block
+  - no_magic_numbers
+  - attribute_name_spacing
+  - function_parameter_count
