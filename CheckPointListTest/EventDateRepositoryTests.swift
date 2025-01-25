@@ -38,19 +38,22 @@ final class EventDateRepository: XCTestCase {
         let eventDates = try eventDateRepository.getAllEventDatesByEvent(for: event1!)
         
         XCTAssertEqual(eventDates.count, 1, "La cantidad de fechas obtenidas para el event1 deberia ser de 1.")
-        XCTAssertEqual(eventDates.map { $0.date }, [Utils.removeTimeFromDate(of: Date())], "La fecha obtenida de event1 deberia ser la fecha de hoy.")
+        XCTAssertEqual(eventDates.map { $0.date }, [Utils.removeTimeFromDate(
+            of: Date())], "La fecha obtenida de event1 deberia ser la fecha de hoy.")
     }
     
     func testGetAllEventDatesByNotFoundEvent() throws {
         let notExistingEvent = Event(context: persistenCointainer.viewContext)
         let notFoundEventDates = try eventDateRepository.getAllEventDatesByEvent(for: notExistingEvent)
         
-        XCTAssertEqual(notFoundEventDates.count, 0, "La cantidad de fechas obtenidas deberian ser 0 para un evento no existente.")
+        XCTAssertEqual(notFoundEventDates.count, 0,
+        "La cantidad de fechas obtenidas deberian ser 0 para un evento no existente.")
     }
     
     func testUpdateDateToNow() throws {
         let todayDate = Utils.removeTimeFromDate(of: Date())
-        let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
+        let yesterdayDate = Utils.removeTimeFromDate(
+            of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         
         try eventRepository.createEvent(name: "Event2", date: yesterdayDate)
         let event2 = try eventRepository.getEventsByName(for: "Event2").first
@@ -58,36 +61,43 @@ final class EventDateRepository: XCTestCase {
         
         let event2Dates = try eventDateRepository.getAllEventDatesByEvent(for: event2!)
         XCTAssertEqual(event2Dates.count, 2, "La cantidad de fechas del evento debe ser 2.")
-        XCTAssertEqual(event2Dates.map { $0.date }, [todayDate, yesterdayDate], "Las fechas obtenidas deberian ser las fechas de ayer y hoy.")
+        XCTAssertEqual(event2Dates.map { $0.date }, [todayDate, yesterdayDate],
+        "Las fechas obtenidas deberian ser las fechas de ayer y hoy.")
     }
     
     func testGetEventDatesByDate() throws {
         let todayDate = Utils.removeTimeFromDate(of: Date())
-        let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
+        let yesterdayDate = Utils.removeTimeFromDate(
+            of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         
         try eventRepository.createEvent(name: "Event3", date: yesterdayDate)
         let event3 = try eventRepository.getEventsByName(for: "Event3").first
         try eventDateRepository.updateDateToNow(for: event3!)
         
         let event3Dates = try eventDateRepository.getEventDateByDate(for: event3!, by: yesterdayDate)
-        XCTAssertEqual(event3Dates.count, 1, "La funcion getEventDateByDate deberia retornar un solo elemento.")
-        XCTAssertEqual(event3Dates.map { $0.date }, [yesterdayDate], "La funcion getEventDateByDate deberia retornar el evento con la fecha de hoy.")
+        XCTAssertEqual(event3Dates.count, 1,
+        "La funcion getEventDateByDate deberia retornar un solo elemento.")
+        XCTAssertEqual(event3Dates.map { $0.date }, [yesterdayDate],
+        "La funcion getEventDateByDate deberia retornar el evento con la fecha de hoy.")
     }
     
     func testGetEventDatesByNotExistingDate() throws {
         let todayDate = Utils.removeTimeFromDate(of: Date())
-        let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
+        let yesterdayDate = Utils.removeTimeFromDate(
+            of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         
         try eventRepository.createEvent(name: "Event3", date: yesterdayDate)
         let event3 = try eventRepository.getEventsByName(for: "Event3").first
         
         let event3Dates = try eventDateRepository.getEventDateByDate(for: event3!, by: todayDate)
-        XCTAssertEqual(event3Dates.count, 0, "La funcion getEventDateByDate deberia retornar un arreglo vacio si no existe el evento con la fecha de hoy.")
+        XCTAssertEqual(event3Dates.count, 0,
+        "La funcion getEventDateByDate deberia retornar un arreglo vacio si no existe el evento con la fecha de hoy.")
     }
     
     func testGetMostRecentEventDateByEvent() throws {
         let todayDate = Utils.removeTimeFromDate(of: Date())
-        let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
+        let yesterdayDate = Utils.removeTimeFromDate(
+            of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         
         try eventRepository.createEvent(name: "Event4", date: yesterdayDate)
         let event4 = try eventRepository.getEventsByName(for: "Event4").first
@@ -99,7 +109,8 @@ final class EventDateRepository: XCTestCase {
     
     func testGetMostRecentEventDateByNotExistingEvent() throws {
         let todayDate = Utils.removeTimeFromDate(of: Date())
-        let yesterdayDate = Utils.removeTimeFromDate(of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
+        let yesterdayDate = Utils.removeTimeFromDate(
+            of: Calendar.current.date(byAdding: .day, value: -1, to: todayDate) ?? todayDate)
         let notExistingEvent = Event(context: persistenCointainer.viewContext)
         notExistingEvent.name = "notExistingEvent"
         notExistingEvent.id = UUID()

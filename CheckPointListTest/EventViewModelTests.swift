@@ -1,4 +1,3 @@
-
 import XCTest
 import CoreData
 
@@ -35,7 +34,8 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 1, "La cantidad de evento deberia ser de 1.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event1"], "La lista de nombres de eventos deberia contener solo 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event1"],
+        "La lista de nombres de eventos deberia contener solo 'Event1'")
     }
     
     func testGetAllEventsEmpty() throws {
@@ -50,7 +50,8 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 2, "La cantidad de eventos deberia ser de 2.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"], "La lista de nombres de eventos deberia contener 'Event1' y 'Event2'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"],
+        "La lista de nombres de eventos deberia contener 'Event1' y 'Event2'")
     }
     
     func testAddEventRepeatedName() throws {
@@ -60,7 +61,8 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 1, "La cantidad de eventos deberia ser de 1.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event1"], "La lista de nombres de eventos deberia contener solo 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event1"],
+        "La lista de nombres de eventos deberia contener solo 'Event1'")
     }
     
     func testAddEventEmptyName() throws {
@@ -79,14 +81,16 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 3, "La cantidad de eventos deberia ser de 3.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event3", "Event2", "Event1"],  "La lista de nombres de eventos deberia contener 'Event3', 'Event2' y 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event3", "Event2", "Event1"],
+        "La lista de nombres de eventos deberia contener 'Event3', 'Event2' y 'Event1'")
         
         eventViewModel.deleteEvent(at: IndexSet(integer: 1))
         
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 2, "La cantidad de eventos deberia ser de 2.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event3", "Event1"], "La lista de nombres de eventos deberia contener 'Event3' y 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event3", "Event1"],
+        "La lista de nombres de eventos deberia contener 'Event3' y 'Event1'")
     }
     
     func testDeleteEventNotExistingEvent() throws {
@@ -96,7 +100,8 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
         
         XCTAssertEqual(eventViewModel.events.count, 2, "La cantidad de eventos deberia ser de 2.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"], "La lista de nombres de eventos deberia contener 'Event2' y 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"],
+        "La lista de nombres de eventos deberia contener 'Event2' y 'Event1'")
         
         eventViewModel.deleteEvent(at: IndexSet(integer: -1))
         eventViewModel.deleteEvent(at: IndexSet(integer: 3))
@@ -104,7 +109,8 @@ final class EventViewModelTests: XCTestCase {
         eventViewModel.getAllEvents()
 
         XCTAssertEqual(eventViewModel.events.count, 2, "La cantidad de eventos deberia ser de 2.")
-        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"], "La lista de nombres de eventos deberia contener 'Event2' y 'Event1'")
+        XCTAssertEqual(eventViewModel.events.map { $0.name }, ["Event2", "Event1"],
+        "La lista de nombres de eventos deberia contener 'Event2' y 'Event1'")
     }
     
     func testUpdateDateToNow() throws {
@@ -124,7 +130,8 @@ final class EventViewModelTests: XCTestCase {
         
         eventDates = eventViewModel.getAllEventDatesByEvent(for: event1)
         XCTAssertEqual(eventDates.count, 2, "El evento 'Event1' debe tener un 2 eventDates.")
-        XCTAssertEqual(eventDates.map { $0.date }, [todayDate, yestardayDate], "La fecha del event1 debe ser ayer y hoy.")
+        XCTAssertEqual(eventDates.map { $0.date }, [todayDate, yestardayDate],
+        "La fecha del event1 debe ser ayer y hoy.")
     }
     
     func testUpdateToNowNotExistingEvent() throws {
@@ -193,7 +200,8 @@ final class EventViewModelTests: XCTestCase {
         
         let eventDates: [EventDate] = eventViewModel.getAllEventDatesByEvent(for: event1)
         XCTAssertEqual(eventDates.count, 2, "El evento 'Event1' debe tener un 2 eventDates.")
-        XCTAssertEqual(eventDates.map { $0.date }, [todayDate, yestardayDate], "La fecha del event1 debe ser ayer y hoy.")
+        XCTAssertEqual(eventDates.map { $0.date }, [todayDate, yestardayDate],
+        "La fecha del event1 debe ser ayer y hoy.")
     }
     
     func testGetAllEventDatesByEventNotExistingEvent() throws {

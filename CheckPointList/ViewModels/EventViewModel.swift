@@ -17,8 +17,8 @@ class EventViewModel: ObservableObject {
         self.viewContext = context
         self.eventRepostiory = EventRepository(context: context)
         self.eventDateRepository = EventDateReporistory(context: context)
-        self.validationService = ValidationService(eventRepository: eventRepostiory,
-                                                   eventDateRepository: eventDateRepository)
+        self.validationService = ValidationService(
+            eventRepository: eventRepostiory, eventDateRepository: eventDateRepository)
         self.errorManager = ErrorManager()
         errorManager.$errorMessage.assign(to: &$errorMessage)
         errorManager.$showError.assign(to: &$showError)
@@ -28,7 +28,7 @@ class EventViewModel: ObservableObject {
     
     func getAllEvents() {
         do {
-             events = try eventRepostiory.getAllEvents()
+            events = try eventRepostiory.getAllEvents()
         } catch {
             showError(for: "Error al obtener todos los eventos.")
         }

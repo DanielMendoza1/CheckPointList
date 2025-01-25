@@ -1,4 +1,3 @@
-
 import XCTest
 
 @testable import CheckPointList
@@ -36,5 +35,3 @@ final class UtilsTest: XCTestCase {
         XCTAssertEqual(result, "2023-12-25", "El formato personalizado debería coincidir con lo esperado.")
     }
 }
-
-

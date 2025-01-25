@@ -6,7 +6,8 @@ final class CheckPointListUITestsLaunchTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         app.launch()
-        XCTAssertTrue(app.buttons["AddEventButton"].waitForExistence(timeout: 5), "la aplicacion no se lanza correctamente")
+        XCTAssertTrue(app.buttons["AddEventButton"].waitForExistence(timeout: 5),
+        "la aplicacion no se lanza correctamente")
     }
 
     @MainActor
@@ -18,7 +19,8 @@ final class CheckPointListUITestsLaunchTests: XCTestCase {
         addEventButton.tap()
         let eventDetailsSectionHeader: XCUIElement =  app.staticTexts["eventDetailsSectionHeader"]
         
-        XCTAssertTrue(eventDetailsSectionHeader.exists, "El encabezado de la seccion de detalles de evento no fue encontrada.")
+        XCTAssertTrue(eventDetailsSectionHeader.exists,
+        "El encabezado de la seccion de detalles de evento no fue encontrada.")
     }
     
     @MainActor
@@ -30,7 +32,8 @@ final class CheckPointListUITestsLaunchTests: XCTestCase {
         addEventButton.tap()
         let eventDetailsSectionHeader: XCUIElement =  app.staticTexts["eventDetailsSectionHeader"]
         
-        XCTAssertTrue(eventDetailsSectionHeader.exists, "El encabezado de la seccion de detalles de evento no fue encontrada.")
+        XCTAssertTrue(eventDetailsSectionHeader.exists,
+        "El encabezado de la seccion de detalles de evento no fue encontrada.")
         
         let nameTextField: XCUIElement = app.textFields["nameTextField"]
         

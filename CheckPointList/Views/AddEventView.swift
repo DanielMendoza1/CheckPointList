@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 struct AddEventView: View {
@@ -29,4 +27,3 @@ struct AddEventView: View {
         }
     }
 }
-

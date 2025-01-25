@@ -1,4 +1,3 @@
-
 import XCTest
 import CoreData
 
@@ -25,7 +24,8 @@ final class ValidationServiceTests: XCTestCase {
         }
         eventDateRepository = EventDateReporistory(context: persistenCointainer.viewContext)
         eventRepository = EventRepository(context: persistenCointainer.viewContext)
-        validationService = ValidationService(eventRepository: eventRepository, eventDateRepository: eventDateRepository)
+        validationService = ValidationService(
+            eventRepository: eventRepository, eventDateRepository: eventDateRepository)
     }
 
     override func tearDownWithError() throws {
@@ -59,7 +59,8 @@ final class ValidationServiceTests: XCTestCase {
         let nombreEvento: String = "Event1"
         try eventRepository.createEvent(name: nombreEvento, date: fechaActual)
         
-        let event1 = try XCTUnwrap(eventRepository.getEventsByName(for: nombreEvento).first, "No se encontró el evento, test fallido.")
+        let event1 = try XCTUnwrap(eventRepository.getEventsByName(for: nombreEvento).first,
+        "No se encontró el evento, test fallido.")
         let isDuplicatedEventDate = validationService.isDuplicatedEventDate(for: event1, by: fechaActual)
         
         XCTAssertTrue(isDuplicatedEventDate, "La fecha del evento deberia ser duplicada.")
@@ -71,7 +72,8 @@ final class ValidationServiceTests: XCTestCase {
         let nombreEvento: String = "Event1"
         try eventRepository.createEvent(name: nombreEvento, date: fechaAnterior)
         
-        let event1: Event = try XCTUnwrap(eventRepository.getEventsByName(for: nombreEvento).first, "No se encontró el evento, test fallido.")
+        let event1: Event = try XCTUnwrap(eventRepository.getEventsByName(for: nombreEvento).first,
+        "No se encontró el evento, test fallido.")
         let isDuplicatedEventDate: Bool = validationService.isDuplicatedEventDate(for: event1, by: fechaActual)
         
         XCTAssertFalse(isDuplicatedEventDate, "La fecha del evento no deberia ser duplicada.")
@@ -91,7 +93,8 @@ final class ValidationServiceTests: XCTestCase {
     func testIsExistingEvent() throws {
         try eventRepository.createEvent(name: "Event1", date: Date())
         
-        let event1: Event = try XCTUnwrap(eventRepository.getEventsByName(for: "Event1").first, "No se encontró el evento, test fallido.")
+        let event1: Event = try XCTUnwrap(eventRepository.getEventsByName(for: "Event1").first,
+        "No se encontró el evento, test fallido.")
         let event1Id: UUID = try XCTUnwrap(event1.id)
         let isExistingEvent: Bool = validationService.isExistingEvent(for: event1Id)
         

@@ -1,4 +1,3 @@
-
 import Foundation
 
 class Utils {
@@ -15,7 +14,10 @@ class Utils {
         return String(components.day ?? 0)
     }
     
-    static func formatDateToText(of date: Date, format: String = "EEEE, MMM d, yyyy", locale: String = "es_MX") -> String {
+    static func formatDateToText(
+        of date: Date,
+        format: String = "EEEE, MMM d, yyyy",
+        locale: String = "es_MX") -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = format
         formatter.locale = Locale(identifier: locale)

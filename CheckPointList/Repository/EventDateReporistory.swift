@@ -1,4 +1,3 @@
-
 import Foundation
 import CoreData
 
@@ -26,7 +25,8 @@ class EventDateReporistory {
     
     func getEventDateByDate(for event: Event, by date: Date) throws -> [EventDate] {
         let fetchRequest: NSFetchRequest<EventDate> = EventDate.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@", event, Utils.removeTimeFromDate(of: date) as CVarArg)
+        fetchRequest.predicate = NSPredicate(format: "event == %@ && date == %@",
+        event, Utils.removeTimeFromDate(of: date) as CVarArg)
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
         return try context.fetch(fetchRequest)
     }

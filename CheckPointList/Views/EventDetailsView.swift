@@ -1,5 +1,3 @@
-
-
 import SwiftUI
 
 struct EventDetailsView: View {
@@ -11,20 +9,22 @@ struct EventDetailsView: View {
             Form {
                 Section {
                     LabeledContent("Nombre del evento", value: event.name ?? "Sin Nombre")
-                    LabeledContent("Fecha del evento", value: Utils.formatDateToText(of: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
+                    LabeledContent("Fecha del evento", value: Utils.formatDateToText(
+                        of: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
                 } header: {
                     Text("Informacion Extra")
                 }
                 Section {
                     Button(action: {
                         viewModel.updateDateToNow(for: event)
-                    }) {
+                    }, label: {
                         Text("Actualizar fecha")
-                    }
+                    })
                     .disabled(viewModel.isDuplicatedEventDate(for: event, by: Date()))
                 }
                 Section {
-                    LabeledContent("Dias transcurridos", value: Utils.calculateDaysUntilNow(from: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
+                    LabeledContent("Dias transcurridos", value: Utils.calculateDaysUntilNow(
+                        from: viewModel.getMostRecentEventDateByEvent(for: event)?.date ?? Date()))
                 } header: {
                     Text("Estadisticas")
                 }

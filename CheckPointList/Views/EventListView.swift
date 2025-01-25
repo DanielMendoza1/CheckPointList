@@ -38,9 +38,9 @@ struct EventListView: View {
             .navigationTitle("Eventos")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { showingAddEventView = true }) {
+                    Button(action: { showingAddEventView = true }, label: {
                         Label("Agregar Evento", systemImage: "plus")
-                    }
+                    })
                     .accessibilityIdentifier("AddEventButton")
                 }
             }
