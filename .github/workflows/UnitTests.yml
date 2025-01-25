@@ -6,8 +6,10 @@ on:
       - main
 
 jobs:
-  UnitTest:
+  Unit:
+    name: Run Unit Tests
     runs-on: macos-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,4 +32,30 @@ jobs:
       - name: Shutdown iOS Simulator
         run: xcrun simctl shutdown all
           
-      
+  lint:
+    name: Run SwiftLint
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Homebrew
+        run: |
+          echo 'Setting up Homebrew...'
+          brew update
+
+      - name: Install SwiftLint
+        run: |
+          echo 'Installing SwiftLint...'
+          brew install swiftlint
+
+      - name: Run SwiftLint
+        run: |
+          echo 'Running SwiftLint...'
+          swiftlint lint --strict
+
+      - name: Annotate SwiftLint issues
+        if: failure()
+        run: |
+          echo "::error file=$file,line=$line,col=$col::$message"

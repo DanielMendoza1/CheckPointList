@@ -11,29 +11,24 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      # 1. Clonar el repositorio
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Configurar Homebrew (opcional, si es necesario para SwiftLint)
       - name: Set up Homebrew
         run: |
           echo 'Setting up Homebrew...'
           brew update
 
-      # 3. Instalar SwiftLint
       - name: Install SwiftLint
         run: |
           echo 'Installing SwiftLint...'
           brew install swiftlint
 
-      # 4. Ejecutar SwiftLint
       - name: Run SwiftLint
         run: |
           echo 'Running SwiftLint...'
           swiftlint lint --strict
 
-      # 5. Publicar los resultados (opcional, mejora la visibilidad en PRs)
       - name: Annotate SwiftLint issues
         if: failure()
         run: |
