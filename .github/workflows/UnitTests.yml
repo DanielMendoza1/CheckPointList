@@ -61,3 +61,25 @@ jobs:
 
       - name: Shutdown iOS Simulator
         run: xcrun simctl shutdown all
+
+  Coverage:
+    name: Run Slather Report
+    runs-on: macos-latest
+    needs: Unit
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1.6'
+
+      - name: Install Slather
+        run: |
+          gem install slather
+
+      - name: Run Slather coverage
+        run: |
+          slather
