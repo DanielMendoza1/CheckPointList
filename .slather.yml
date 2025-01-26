@@ -1,0 +1,8 @@
+coverage_service: html
+xcodeproj: CheckPointList.xcodeproj
+scheme: CheckPointList
+output_directory: slather-report
+source_files:
+  - CheckPointList/**/*.swift
+ignore:
+  - CheckPointList/Model/Persistence.swift
