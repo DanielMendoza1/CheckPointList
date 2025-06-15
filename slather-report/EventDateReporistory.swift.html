@@ -29,7 +29,7 @@
 </tr>
 <tr class="never">
 <td class="num">4</td>
-<td class="src"><pre><code class="objc">class EventDateReporistory {</code></pre></td>
+<td class="src"><pre><code class="objc">class EventDateReporistory: EventDateRepositoryProtocol {</code></pre></td>
 <td class="coverage"></td>
 </tr>
 <tr class="never">
@@ -45,17 +45,17 @@
 <tr class="covered">
 <td class="num">7</td>
 <td class="src"><pre><code class="objc">    init(context: NSManagedObjectContext) {</code></pre></td>
-<td class="coverage">34x</td>
+<td class="coverage">35x</td>
 </tr>
 <tr class="covered">
 <td class="num">8</td>
 <td class="src"><pre><code class="objc">        self.context = context</code></pre></td>
-<td class="coverage">34x</td>
+<td class="coverage">35x</td>
 </tr>
 <tr class="covered">
 <td class="num">9</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">34x</td>
+<td class="coverage">35x</td>
 </tr>
 <tr class="never">
 <td class="num">10</td>
@@ -65,37 +65,37 @@
 <tr class="covered">
 <td class="num">11</td>
 <td class="src"><pre><code class="objc">    func getMostRecentEventDateByEvent(for event: Event) throws -&gt; EventDate? {</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">12</td>
 <td class="src"><pre><code class="objc">        let fetchRequest: NSFetchRequest&lt;EventDate&gt; = EventDate.fetchRequest()</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">13</td>
 <td class="src"><pre><code class="objc">        fetchRequest.predicate = NSPredicate(format: "event == %@", event)</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">14</td>
 <td class="src"><pre><code class="objc">        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">15</td>
 <td class="src"><pre><code class="objc">        fetchRequest.fetchLimit = 1</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">16</td>
 <td class="src"><pre><code class="objc">        return try context.fetch(fetchRequest).first</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="covered">
 <td class="num">17</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">9x</td>
+<td class="coverage">5x</td>
 </tr>
 <tr class="never">
 <td class="num">18</td>

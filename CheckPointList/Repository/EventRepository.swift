@@ -1,7 +1,7 @@
 import Foundation
 import CoreData
 
-class EventRepository {
+class EventRepository: EventRepositoryProtocol {
     private let context: NSManagedObjectContext
     
     init(context: NSManagedObjectContext) {

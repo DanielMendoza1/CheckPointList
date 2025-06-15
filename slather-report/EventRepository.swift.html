@@ -29,7 +29,7 @@
 </tr>
 <tr class="never">
 <td class="num">4</td>
-<td class="src"><pre><code class="objc">class EventRepository {</code></pre></td>
+<td class="src"><pre><code class="objc">class EventRepository: EventRepositoryProtocol {</code></pre></td>
 <td class="coverage"></td>
 </tr>
 <tr class="never">
@@ -45,17 +45,17 @@
 <tr class="covered">
 <td class="num">7</td>
 <td class="src"><pre><code class="objc">    init(context: NSManagedObjectContext) {</code></pre></td>
-<td class="coverage">41x</td>
+<td class="coverage">42x</td>
 </tr>
 <tr class="covered">
 <td class="num">8</td>
 <td class="src"><pre><code class="objc">        self.context = context</code></pre></td>
-<td class="coverage">41x</td>
+<td class="coverage">42x</td>
 </tr>
 <tr class="covered">
 <td class="num">9</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">41x</td>
+<td class="coverage">42x</td>
 </tr>
 <tr class="never">
 <td class="num">10</td>
@@ -65,27 +65,27 @@
 <tr class="covered">
 <td class="num">11</td>
 <td class="src"><pre><code class="objc">    func getAllEvents() throws -&gt; [Event] {</code></pre></td>
-<td class="coverage">53x</td>
+<td class="coverage">51x</td>
 </tr>
 <tr class="covered">
 <td class="num">12</td>
 <td class="src"><pre><code class="objc">        let fetchRequest: NSFetchRequest&lt;Event&gt; = Event.fetchRequest()</code></pre></td>
-<td class="coverage">53x</td>
+<td class="coverage">51x</td>
 </tr>
 <tr class="covered">
 <td class="num">13</td>
 <td class="src"><pre><code class="objc">        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]</code></pre></td>
-<td class="coverage">53x</td>
+<td class="coverage">51x</td>
 </tr>
 <tr class="covered">
 <td class="num">14</td>
 <td class="src"><pre><code class="objc">        return try context.fetch(fetchRequest)</code></pre></td>
-<td class="coverage">53x</td>
+<td class="coverage">51x</td>
 </tr>
 <tr class="covered">
 <td class="num">15</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">53x</td>
+<td class="coverage">51x</td>
 </tr>
 <tr class="never">
 <td class="num">16</td>
@@ -95,32 +95,32 @@
 <tr class="covered">
 <td class="num">17</td>
 <td class="src"><pre><code class="objc">    func getEventsByName(for name: String) throws -&gt; [Event] {</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="covered">
 <td class="num">18</td>
 <td class="src"><pre><code class="objc">        let fetchRequest: NSFetchRequest&lt;Event&gt; = Event.fetchRequest()</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="covered">
 <td class="num">19</td>
 <td class="src"><pre><code class="objc">        fetchRequest.predicate = NSPredicate(format: "name == %@", name)</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="covered">
 <td class="num">20</td>
 <td class="src"><pre><code class="objc">        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: false)]</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="covered">
 <td class="num">21</td>
 <td class="src"><pre><code class="objc">        return try context.fetch(fetchRequest)</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="covered">
 <td class="num">22</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">33x</td>
+<td class="coverage">30x</td>
 </tr>
 <tr class="never">
 <td class="num">23</td>
@@ -130,42 +130,42 @@
 <tr class="covered">
 <td class="num">24</td>
 <td class="src"><pre><code class="objc">    func getEventById(for id: UUID) throws -&gt; Event? {</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">25</td>
 <td class="src"><pre><code class="objc">        let fetchRequest: NSFetchRequest&lt;Event&gt; = Event.fetchRequest()</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">26</td>
 <td class="src"><pre><code class="objc">        fetchRequest.predicate = NSPredicate(format: "id == %@", id as CVarArg)</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">27</td>
 <td class="src"><pre><code class="objc">        fetchRequest.fetchLimit = 1</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">28</td>
 <td class="src"><pre><code class="objc">        </code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">29</td>
 <td class="src"><pre><code class="objc">        let result: [Event] = try context.fetch(fetchRequest)</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">30</td>
 <td class="src"><pre><code class="objc">        return result.first(where: { !$0.hasChanges })</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">31</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="never">
 <td class="num">32</td>

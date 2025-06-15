@@ -40,7 +40,7 @@ class EventViewModel: ObservableObject {
             return nil
         }
         
-        guard validationService.isExistingEvent(for: eventId) else {
+        guard isExistingEvent(for: eventId) else {
             showError(for: "El evento a consultar no existe.")
             return nil
         }
@@ -59,7 +59,7 @@ class EventViewModel: ObservableObject {
             return []
         }
         
-        guard validationService.isExistingEvent(for: eventId) else {
+        guard isExistingEvent(for: eventId) else {
             showError(for: "El evento a consultar no existe.")
             return []
         }
@@ -73,12 +73,12 @@ class EventViewModel: ObservableObject {
     }
     
     func addEvent(name: String, date: Date) {
-        guard !validationService.isDuplicatedName(of: name) else {
+        guard !isDuplicatedName(for: name) else {
             showError(for: "El nombre del evento ya existe.")
             return
         }
         
-        guard !validationService.isEmptyEventName(of: name) else {
+        guard !isEmptyEventName(of: name) else {
             showError(for: "El nombre del evento es vacio.")
             return
         }
@@ -114,7 +114,7 @@ class EventViewModel: ObservableObject {
             return
         }
                 
-        guard validationService.isExistingEvent(for: eventId) else {
+        guard isExistingEvent(for: eventId) else {
             showError(for: "El evento a actualizar no existe.")
             return
         }
@@ -134,6 +134,14 @@ class EventViewModel: ObservableObject {
     
     func isDuplicatedName(for name: String) -> Bool {
         return validationService.isDuplicatedName(of: name)
+    }
+    
+    func isEmptyEventName(of name: String) -> Bool {
+        return validationService.isEmptyEventName(of: name)
+    }
+    
+    func isExistingEvent(for eventId: UUID) -> Bool {
+        return validationService.isExistingEvent(for: eventId)
     }
     
     func isDuplicatedEventDate(for event: Event, by date: Date) -> Bool {

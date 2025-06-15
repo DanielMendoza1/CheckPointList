@@ -9,6 +9,9 @@ final class ValidationServiceTests: XCTestCase {
     var eventDateRepository: EventDateReporistory!
     var eventRepository: EventRepository!
     var validationService: ValidationService!
+    var failingEventRepository: FailingEventRepository!
+    var failingEventDateRepository: FailingEventDateRepository!
+    var failingValidationService: ValidationService!
 
     override func setUpWithError() throws {
         persistenCointainer = NSPersistentContainer(name: "CheckPointList")
@@ -22,10 +25,15 @@ final class ValidationServiceTests: XCTestCase {
                 XCTFail("Error al cargar la tienda persistente: \(error.localizedDescription)")
             }
         }
-        eventDateRepository = EventDateReporistory(context: persistenCointainer.viewContext)
         eventRepository = EventRepository(context: persistenCointainer.viewContext)
+        eventDateRepository = EventDateReporistory(context: persistenCointainer.viewContext)
         validationService = ValidationService(
             eventRepository: eventRepository, eventDateRepository: eventDateRepository)
+        
+        failingEventRepository = FailingEventRepository()
+        failingEventDateRepository = FailingEventDateRepository()
+        failingValidationService = ValidationService(
+            eventRepository: failingEventRepository, eventDateRepository: failingEventDateRepository)
     }
 
     override func tearDownWithError() throws {
@@ -39,19 +47,24 @@ final class ValidationServiceTests: XCTestCase {
         try eventRepository.createEvent(name: "Event1", date: Date())
         
         let isDuplicatedName = validationService.isDuplicatedName(of: "Event1")
-        XCTAssertTrue(isDuplicatedName)
+        XCTAssertTrue(isDuplicatedName, "El evento deberia de ya existir.")
     }
     
     func testIsDuplicatedNameNotDuplicated() throws {
         try eventRepository.createEvent(name: "Event1", date: Date())
         
         let isDuplicatedName = validationService.isDuplicatedName(of: "Event2")
-        XCTAssertFalse(isDuplicatedName)
+        XCTAssertFalse(isDuplicatedName, "El evento no deberia de existir.")
     }
     
     func testIsDuplicatedNameEmpty() throws {
         let isDuplicatedName = validationService.isDuplicatedName(of: "Event1")
-        XCTAssertFalse(isDuplicatedName)
+        XCTAssertFalse(isDuplicatedName, "El evento no deberia de existir.")
+    }
+    
+    func testIsDuplicatedNameError() throws {
+        let isDuplicatedName = failingValidationService.isDuplicatedName(of: "Event1")
+        XCTAssertFalse(isDuplicatedName, "El metodo deberia de fallar al intentar validar el nombre del evento.")
     }
     
     func testIsDuplicatedEventDate() throws {
@@ -90,6 +103,11 @@ final class ValidationServiceTests: XCTestCase {
         XCTAssertFalse(isDuplicatedEventDate, "La fecha del evento no deberia ser duplicada.")
     }
     
+    func testIsDuplicatedEventDateError() throws {
+        let isDuplicatedEventDate = failingValidationService.isDuplicatedEventDate(for: Event(), by: Date())
+        XCTAssertFalse(isDuplicatedEventDate, "El metodo deberia de fallar al validar la fecha del evento.")
+    }
+    
     func testIsExistingEvent() throws {
         try eventRepository.createEvent(name: "Event1", date: Date())
         
@@ -110,6 +128,11 @@ final class ValidationServiceTests: XCTestCase {
         let isExistingEvent: Bool = validationService.isExistingEvent(for: notExistingEventId)
         
         XCTAssertFalse(isExistingEvent, "El evento no deberia existir.")
+    }
+    
+    func testIsExistingEventError() throws {
+        let isExistingEvent: Bool = failingValidationService.isExistingEvent(for: UUID())
+        XCTAssertFalse(isExistingEvent, "El metodo deberia de fallar al buscar un evento por id.")
     }
 
     func testIsEmptyEventName() throws {

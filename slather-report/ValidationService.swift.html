@@ -7,9 +7,9 @@
 <body>
 <header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
 <h2 class="cov_title">
-<span>Coverage for "ValidationService.swift" : </span><span>Lines: </span><span class="cov_medium">72.73%</span><span> Branches: </span><span class="cov_medium">85.00%</span>
+<span>Coverage for "ValidationService.swift" : </span><span>Lines: </span><span class="cov_high">100.00%</span><span> Branches: </span><span class="cov_high">100.00%</span>
 </h2>
-<h4 class="cov_subtitle">(24 of 33 relevant lines covered)</h4>
+<h4 class="cov_subtitle">(33 of 33 relevant lines covered)</h4>
 <h4 class="cov_filepath">CheckPointList/Service/ValidationService.swift</h4>
 <table class="source_code">
 <tr class="never">
@@ -34,12 +34,12 @@
 </tr>
 <tr class="never">
 <td class="num">5</td>
-<td class="src"><pre><code class="objc">    private let eventRepository: EventRepository</code></pre></td>
+<td class="src"><pre><code class="objc">    private let eventRepository: EventRepositoryProtocol</code></pre></td>
 <td class="coverage"></td>
 </tr>
 <tr class="never">
 <td class="num">6</td>
-<td class="src"><pre><code class="objc">    private let eventDateRepository: EventDateReporistory</code></pre></td>
+<td class="src"><pre><code class="objc">    private let eventDateRepository: EventDateRepositoryProtocol</code></pre></td>
 <td class="coverage"></td>
 </tr>
 <tr class="never">
@@ -49,23 +49,23 @@
 </tr>
 <tr class="covered">
 <td class="num">8</td>
-<td class="src"><pre><code class="objc">    init(eventRepository: EventRepository, eventDateRepository: EventDateReporistory) {</code></pre></td>
-<td class="coverage">27x</td>
+<td class="src"><pre><code class="objc">    init(eventRepository: EventRepositoryProtocol, eventDateRepository: EventDateRepositoryProtocol) {</code></pre></td>
+<td class="coverage">41x</td>
 </tr>
 <tr class="covered">
 <td class="num">9</td>
 <td class="src"><pre><code class="objc">        self.eventRepository = eventRepository</code></pre></td>
-<td class="coverage">27x</td>
+<td class="coverage">41x</td>
 </tr>
 <tr class="covered">
 <td class="num">10</td>
 <td class="src"><pre><code class="objc">        self.eventDateRepository = eventDateRepository</code></pre></td>
-<td class="coverage">27x</td>
+<td class="coverage">41x</td>
 </tr>
 <tr class="covered">
 <td class="num">11</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">27x</td>
+<td class="coverage">41x</td>
 </tr>
 <tr class="never">
 <td class="num">12</td>
@@ -75,47 +75,47 @@
 <tr class="covered">
 <td class="num">13</td>
 <td class="src"><pre><code class="objc">    func isDuplicatedName(of name: String) -&gt; Bool {</code></pre></td>
-<td class="coverage">21x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">14</td>
 <td class="src"><pre><code class="objc">        do {</code></pre></td>
-<td class="coverage">21x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">15</td>
 <td class="src"><pre><code class="objc">            let result = try eventRepository.getEventsByName(for: name)</code></pre></td>
-<td class="coverage">21x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">16</td>
 <td class="src"><pre><code class="objc">            return !result.isEmpty</code></pre></td>
-<td class="coverage">21x</td>
+<td class="coverage">18x</td>
 </tr>
 <tr class="covered">
 <td class="num">17</td>
-<td class="src"><pre><code class="objc">        } catch </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">21x</td>
+<td class="src"><pre><code class="objc">        } catch {</code></pre></td>
+<td class="coverage">19x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">18</td>
 <td class="src"><pre><code class="objc">            print("Error al consultar nombre de eventos: \(error.localizedDescription)")</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">19</td>
 <td class="src"><pre><code class="objc">            return false</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">20</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">21</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">21x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="never">
 <td class="num">22</td>
@@ -125,17 +125,17 @@
 <tr class="covered">
 <td class="num">23</td>
 <td class="src"><pre><code class="objc">    func isDuplicatedEventDate(for event: Event, by date: Date) -&gt; Bool {</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">8x</td>
 </tr>
 <tr class="covered">
 <td class="num">24</td>
 <td class="src"><pre><code class="objc">        do {</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">8x</td>
 </tr>
 <tr class="covered">
 <td class="num">25</td>
 <td class="src"><pre><code class="objc">            let result = try eventDateRepository.getEventDateByDate(for: event, by: date)</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">8x</td>
 </tr>
 <tr class="covered">
 <td class="num">26</td>
@@ -144,28 +144,28 @@
 </tr>
 <tr class="covered">
 <td class="num">27</td>
-<td class="src"><pre><code class="objc">        } catch </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">7x</td>
+<td class="src"><pre><code class="objc">        } catch {</code></pre></td>
+<td class="coverage">8x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">28</td>
 <td class="src"><pre><code class="objc">            print("Error al consultar fechas de eventos: \(error.localizedDescription)")</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">29</td>
 <td class="src"><pre><code class="objc">            return false</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">30</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">31</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">8x</td>
 </tr>
 <tr class="never">
 <td class="num">32</td>
@@ -175,42 +175,42 @@
 <tr class="covered">
 <td class="num">33</td>
 <td class="src"><pre><code class="objc">    func isExistingEvent(for id: UUID) -&gt; Bool {</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">34</td>
 <td class="src"><pre><code class="objc">        do {</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">35</td>
 <td class="src"><pre><code class="objc">            return try eventRepository.getEventById(for: id) != nil</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="covered">
 <td class="num">36</td>
-<td class="src"><pre><code class="objc">        } catch </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">22x</td>
+<td class="src"><pre><code class="objc">        } catch {</code></pre></td>
+<td class="coverage">19x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">37</td>
 <td class="src"><pre><code class="objc">            print("Error al consultar evento: \(error.localizedDescription)")</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">38</td>
 <td class="src"><pre><code class="objc">            return false</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
-<tr class="missed">
+<tr class="covered">
 <td class="num">39</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">!</td>
+<td class="coverage">1x</td>
 </tr>
 <tr class="covered">
 <td class="num">40</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">22x</td>
+<td class="coverage">19x</td>
 </tr>
 <tr class="never">
 <td class="num">41</td>

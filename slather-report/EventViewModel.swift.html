@@ -7,9 +7,9 @@
 <body>
 <header><div class="row"><a href="index.html"><img src="logo.jpg" alt="Slather logo"></a></div></header><div class="row"><div id="reports">
 <h2 class="cov_title">
-<span>Coverage for "EventViewModel.swift" : </span><span>Lines: </span><span class="cov_high">85.04%</span><span> Branches: </span><span class="cov_medium">84.85%</span>
+<span>Coverage for "EventViewModel.swift" : </span><span>Lines: </span><span class="cov_medium">82.68%</span><span> Branches: </span><span class="cov_medium">83.33%</span>
 </h2>
-<h4 class="cov_subtitle">(108 of 127 relevant lines covered)</h4>
+<h4 class="cov_subtitle">(105 of 127 relevant lines covered)</h4>
 <h4 class="cov_filepath">CheckPointList/ViewModels/EventViewModel.swift</h4>
 <table class="source_code">
 <tr class="never">
@@ -35,17 +35,17 @@
 <tr class="covered">
 <td class="num">5</td>
 <td class="src"><pre><code class="objc">    @Published var events: [Event] = []</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">6</td>
 <td class="src"><pre><code class="objc">    @Published var showError: Bool = false</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">7</td>
 <td class="src"><pre><code class="objc">    @Published var errorMessage: String = ""</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="never">
 <td class="num">8</td>
@@ -90,62 +90,62 @@
 <tr class="covered">
 <td class="num">16</td>
 <td class="src"><pre><code class="objc">    init(context: NSManagedObjectContext) {</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">17</td>
 <td class="src"><pre><code class="objc">        self.viewContext = context</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">18</td>
 <td class="src"><pre><code class="objc">        self.eventRepostiory = EventRepository(context: context)</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">19</td>
 <td class="src"><pre><code class="objc">        self.eventDateRepository = EventDateReporistory(context: context)</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">20</td>
 <td class="src"><pre><code class="objc">        self.validationService = ValidationService(</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">21</td>
 <td class="src"><pre><code class="objc">            eventRepository: eventRepostiory, eventDateRepository: eventDateRepository)</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">22</td>
 <td class="src"><pre><code class="objc">        self.errorManager = ErrorManager()</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">23</td>
 <td class="src"><pre><code class="objc">        errorManager.$errorMessage.assign(to: &amp;$errorMessage)</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">24</td>
 <td class="src"><pre><code class="objc">        errorManager.$showError.assign(to: &amp;$showError)</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">25</td>
 <td class="src"><pre><code class="objc">        </code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">26</td>
 <td class="src"><pre><code class="objc">        getAllEvents()</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="covered">
 <td class="num">27</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">17x</td>
+<td class="coverage">15x</td>
 </tr>
 <tr class="never">
 <td class="num">28</td>
@@ -155,22 +155,22 @@
 <tr class="covered">
 <td class="num">29</td>
 <td class="src"><pre><code class="objc">    func getAllEvents() {</code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="covered">
 <td class="num">30</td>
 <td class="src"><pre><code class="objc">        do {</code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="covered">
 <td class="num">31</td>
 <td class="src"><pre><code class="objc">            events = try eventRepostiory.getAllEvents()</code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="covered">
 <td class="num">32</td>
 <td class="src"><pre><code class="objc">        } catch </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="missed">
 <td class="num">33</td>
@@ -180,12 +180,12 @@
 <tr class="covered">
 <td class="num">34</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="covered">
 <td class="num">35</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">46x</td>
+<td class="coverage">44x</td>
 </tr>
 <tr class="never">
 <td class="num">36</td>
@@ -195,12 +195,12 @@
 <tr class="covered">
 <td class="num">37</td>
 <td class="src"><pre><code class="objc">    func getMostRecentEventDateByEvent(for event: Event) -&gt; EventDate? {</code></pre></td>
-<td class="coverage">8x</td>
+<td class="coverage">4x</td>
 </tr>
 <tr class="covered">
 <td class="num">38</td>
 <td class="src"><pre><code class="objc">        guard let eventId: UUID  = event.id else </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">8x</td>
+<td class="coverage">4x</td>
 </tr>
 <tr class="missed">
 <td class="num">39</td>
@@ -215,17 +215,17 @@
 <tr class="covered">
 <td class="num">41</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">8x</td>
+<td class="coverage">4x</td>
 </tr>
 <tr class="covered">
 <td class="num">42</td>
 <td class="src"><pre><code class="objc">        </code></pre></td>
-<td class="coverage">8x</td>
+<td class="coverage">4x</td>
 </tr>
 <tr class="covered">
 <td class="num">43</td>
 <td class="src"><pre><code class="objc">        guard validationService.isExistingEvent(for: eventId) else {</code></pre></td>
-<td class="coverage">8x</td>
+<td class="coverage">4x</td>
 </tr>
 <tr class="covered">
 <td class="num">44</td>
@@ -240,27 +240,27 @@
 <tr class="covered">
 <td class="num">46</td>
 <td class="src"><pre><code class="objc">        }</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">47</td>
 <td class="src"><pre><code class="objc">        </code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">48</td>
 <td class="src"><pre><code class="objc">        do {</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">49</td>
 <td class="src"><pre><code class="objc">            return try eventDateRepository.getMostRecentEventDateByEvent(for: event)</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="covered">
 <td class="num">50</td>
 <td class="src"><pre><code class="objc">        } catch </code><code class="objc missed">{</code><code class="objc"></code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="missed">
 <td class="num">51</td>
@@ -280,7 +280,7 @@
 <tr class="covered">
 <td class="num">54</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">7x</td>
+<td class="coverage">3x</td>
 </tr>
 <tr class="never">
 <td class="num">55</td>
@@ -682,20 +682,20 @@
 <td class="src"><pre><code class="objc">    </code></pre></td>
 <td class="coverage"></td>
 </tr>
-<tr class="covered">
+<tr class="missed">
 <td class="num">135</td>
 <td class="src"><pre><code class="objc">    func isDuplicatedName(for name: String) -&gt; Bool {</code></pre></td>
-<td class="coverage">3x</td>
+<td class="coverage">!</td>
 </tr>
-<tr class="covered">
+<tr class="missed">
 <td class="num">136</td>
 <td class="src"><pre><code class="objc">        return validationService.isDuplicatedName(of: name)</code></pre></td>
-<td class="coverage">3x</td>
+<td class="coverage">!</td>
 </tr>
-<tr class="covered">
+<tr class="missed">
 <td class="num">137</td>
 <td class="src"><pre><code class="objc">    }</code></pre></td>
-<td class="coverage">3x</td>
+<td class="coverage">!</td>
 </tr>
 <tr class="never">
 <td class="num">138</td>

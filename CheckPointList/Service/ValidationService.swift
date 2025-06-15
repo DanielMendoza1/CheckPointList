@@ -2,10 +2,10 @@ import Foundation
 import CoreData
 
 class ValidationService {
-    private let eventRepository: EventRepository
-    private let eventDateRepository: EventDateReporistory
+    private let eventRepository: EventRepositoryProtocol
+    private let eventDateRepository: EventDateRepositoryProtocol
     
-    init(eventRepository: EventRepository, eventDateRepository: EventDateReporistory) {
+    init(eventRepository: EventRepositoryProtocol, eventDateRepository: EventDateRepositoryProtocol) {
         self.eventRepository = eventRepository
         self.eventDateRepository = eventDateRepository
     }
